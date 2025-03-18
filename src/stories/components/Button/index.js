@@ -71,7 +71,7 @@ const QDSButton = ({
                             setToastOpen(false);
                         }}
                         opened={toastOpen}
-                        status="informative"
+                        type="informative"
                     />
                 </>
             ) : (
