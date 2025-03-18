@@ -1,9 +1,9 @@
 import React from 'react';
-import { Tabs } from './Tabs';
+import { QDSTabs } from './Tabs';
 
 export default {
     title: 'Components/Tabs',
-    component: Tabs,
+    component: QDSTabs,
     parameters: {
         layout: 'centered',
         actions: {
@@ -16,7 +16,7 @@ export default {
     tags: ['autodocs', '!dev']
 };
 
-export const BasicTabs = {
+export const DefaultsTabs = {
     args: {
         contentClasses: 'ds-pt-32',
         labels: [
@@ -68,6 +68,17 @@ export const BasicTabs = {
         ]
     },
     argTypes: {
-        defaultSelectedTab: { table: { disable: true } }
+        defaultSelectedTab: { table: { disable: true } },
+        isDisabled: { table: { disable: true } }
+    }
+};
+
+export const CenteredTabs = {
+    args: {
+        ...DefaultsTabs.args,
+        isCentered: true
+    },
+    argTypes: {
+        ...DefaultsTabs.argTypes
     }
 };

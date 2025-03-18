@@ -1,8 +1,8 @@
-import { Loader } from './Loader';
+import { QDSLoader } from './Loader';
 
 export default {
     title: 'Components/Loader',
-    component: Loader,
+    component: QDSLoader,
     parameters: {
         layout: 'centered',
         actions: {
@@ -15,30 +15,9 @@ export default {
     tags: ['autodocs', '!dev']
 };
 
-export const DefaultLoader = {
+export const BasicLoader = {
     args: {},
     argTypes: {
-        customClasses: { table: { disable: true } },
-        isCentered: { table: { disable: true } },
-        isFixed: { table: { disable: true } },
-        progress: { table: { disable: true } }
-    }
-};
-
-export const SmallLoader = {
-    args: {
-        isSmall: true
-    },
-    argTypes: {
-        ...DefaultLoader.argTypes
-    }
-};
-
-export const DeterminateLoader = {
-    args: {
-        isDeterminate: true
-    },
-    argTypes: {
-        ...DefaultLoader.argTypes
+        customClasses: { table: { disable: true } }
     }
 };

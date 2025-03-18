@@ -1,8 +1,8 @@
-import { Toast } from './Toast';
+import { QDSToast } from './Toast';
 
 export default {
     title: 'Components/Toast',
-    component: Toast,
+    component: QDSToast,
     parameters: {
         layout: 'centered',
         actions: {
@@ -21,7 +21,7 @@ export const DefaultToast = {
         message: 'New results are available.'
     },
     argTypes: {
-        conClose: { table: { disable: true } },
+        onClose: { table: { disable: true } },
         opened: { table: { disable: true } }
     }
 };

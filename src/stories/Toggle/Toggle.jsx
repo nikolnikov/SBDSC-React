@@ -1,17 +1,16 @@
 import React from 'react';
-import DSToggle from '../components/Toggle';
+import DSToggle from '../components/Toggle'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const Toggle = ({ 
-    customClasses = [],
+export const QDSToggle = ({
+    customClasses,
     isChecked = false,
     isDisabled = false,
     inputId,
-    leftLabel,
+    label,
     name,
-    onChange,
-    rightLabel
+    onChange
 }) => {
     return (
         <DSToggle
@@ -19,21 +18,19 @@ export const Toggle = ({
             isChecked={isChecked}
             isDisabled={isDisabled}
             inputId={inputId}
-            leftLabel={leftLabel}
+            label={label}
             name={name}
             onChange={onChange}
-            rightLabel={rightLabel}
         />
     );
 };
 
-Toggle.propTypes = {
-    customClasses: PropTypes.string,
+QDSToggle.propTypes = {
     isChecked: PropTypes.bool,
+    customClasses: PropTypes.string,
     isDisabled: PropTypes.bool,
     inputId: PropTypes.string.isRequired,
-    leftLabel: PropTypes.string,
+    label: PropTypes.string,
     name: PropTypes.string,
-    onChange: PropTypes.func,
-    rightLabel: PropTypes.string
+    onChange: PropTypes.func
 };

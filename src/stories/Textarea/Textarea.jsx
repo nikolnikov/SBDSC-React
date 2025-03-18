@@ -1,10 +1,10 @@
 import React from 'react';
-import DSTextarea from '../components/Textarea';
+import DSTextarea from '../components/Textarea'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const Textarea = ({ 
-    customClasses = [],
+export const QDSTextarea = ({
+    customClasses,
     errorMessage,
     hasError = false,
     hintMessage,
@@ -33,7 +33,7 @@ export const Textarea = ({
     );
 };
 
-Textarea.propTypes = {
+QDSTextarea.propTypes = {
     customClasses: PropTypes.string,
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,

@@ -1,8 +1,9 @@
-import { Card } from './Card';
+import React from 'react';
+import { QDSCard } from './Card';
 
 export default {
     title: 'Components/Card',
-    component: Card,
+    component: QDSCard,
     parameters: {
         layout: 'centered',
         actions: {
@@ -17,20 +18,20 @@ export default {
 
 export const BasicCard = {
     args: {
-        children:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur, eros sit amet ornare placerat, enim lectus hendrerit nisl, quis lacinia eros purus vel nunc. Donec imperdiet, leo quis fermentum luctus, nibh nibh vehicula ipsum, eget faucibus nisl enim sed felis.'
+        children: (
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                consectetur, eros sit amet ornare placerat, enim lectus
+                hendrerit nisl, quis lacinia eros purus vel nunc. Donec
+                imperdiet, leo quis fermentum luctus, nibh nibh vehicula ipsum,
+                eget faucibus nisl enim sed felis. Donec sit amet tincidunt
+                nisl. Nulla facilisi. Sed sit amet eros ullamcorper, aliquet
+                nisl quis, ultricies nisl. Nulla facilisi. Sed sit amet eros
+                ullamcorper, aliquet nisl quis, ultricies nisl.
+            </p>
+        )
     },
     argTypes: {
         customClasses: { table: { disable: true } }
-    }
-};
-
-export const CardWithTitle = {
-    args: {
-        ...BasicCard.args,
-        title: 'Title'
-    },
-    argTypes: {
-        ...BasicCard.argTypes
     }
 };

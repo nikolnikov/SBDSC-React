@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const Checkbox = ({
+const QDSCheckbox = ({
     inputId,
     label,
     name,
@@ -13,13 +13,15 @@ const Checkbox = ({
     isDisabled,
     isIndeterminate,
     onChange,
+    isRequired,
     value
 }) => {
     return (
         <label
             className={classNames('ds-input__checkbox', customClasses, {
                 '--disabled': isDisabled,
-                '--indeterminate': isIndeterminate
+                '--indeterminate': isIndeterminate,
+                '--required': isRequired
             })}
             htmlFor={inputId}
             aria-label={label}
@@ -39,7 +41,7 @@ const Checkbox = ({
     );
 };
 
-Checkbox.propTypes = {
+QDSCheckbox.propTypes = {
     inputId: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -48,7 +50,8 @@ Checkbox.propTypes = {
     isDisabled: PropTypes.bool,
     isIndeterminate: PropTypes.bool,
     onChange: PropTypes.func,
+    isRequired: PropTypes.bool,
     value: PropTypes.string
 };
 
-export default Checkbox;
+export default QDSCheckbox;

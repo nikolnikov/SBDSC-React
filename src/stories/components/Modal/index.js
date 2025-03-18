@@ -1,13 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import propTypes from 'prop-types';
-import Button from '../Button';
-import IconButton from '../Button/IconButton.index';
+import QDSButton from '../Button';
+import QDSIconButton from '../Button/IconButton.index';
 import MuiModal from '@mui/material/Modal';
 
-const Modal = ({
+const QDSModal = ({
     backdropClickable = true,
     buttonHandler,
     buttonLabel,
@@ -19,42 +19,78 @@ const Modal = ({
     opened,
     secondaryButtonHandler,
     secondaryButtonLabel,
-    title,
-    type
+    type,
+    title
 }) => {
+    const contentRef = useRef(null);
+    const [isContentScrollable, setIsContentScrollable] = useState(false);
+
+    useEffect(() => {
+        const checkScrollability = () => {
+            const content = contentRef?.current;
+            if (content && content?.scrollHeight > content?.clientHeight) {
+                setIsContentScrollable(true);
+            } else {
+                setIsContentScrollable(false);
+            }
+        };
+
+        if (opened) {
+            setTimeout(checkScrollability, 100);
+            window.addEventListener('resize', checkScrollability);
+        }
+
+        return () => {
+            window.removeEventListener('resize', checkScrollability);
+        };
+    }, [opened]);
+
     return (
-        <>
-            <MuiModal
-                open={opened}
-                onClose={backdropClickable ? modalClose : null}
-                aria-label={title || 'modal'}
-                role="dialog"
+        <MuiModal
+            open={opened}
+            onClose={backdropClickable ? modalClose : null}
+            aria-label={title || 'modal'}
+            role="dialog"
+        >
+            <div
+                className={classNames('ds-modal', {
+                    '--alert': type === 'alert',
+                    '--error': type === 'error',
+                    '--informative': type === 'informative',
+                    '--success': type === 'success',
+                    '--opened': opened
+                })}
             >
                 <div
-                    className={classNames('ds-modal', {
-                        '--alert': type === 'alert',
-                        '--error': type === 'error',
-                        '--informative': type === 'informative',
-                        '--opened': opened
+                    className={classNames('ds-modal__wrapper', {
+                        '--all-btns': ghostButtonLabel
                     })}
                 >
                     <div className="ds-modal__header">
-                        <h1>{title}</h1>
+                        <h2>{title}</h2>
 
                         {!hideX && (
-                            <IconButton
+                            <QDSIconButton
                                 icon="close"
-                                size="medium"
+                                size="md"
                                 clickHandler={modalClose}
                             />
                         )}
                     </div>
 
-                    <div className="ds-modal__content">{children}</div>
+                    <div className="ds-modal__content" ref={contentRef}>
+                        {children}
+                    </div>
+                </div>
 
-                    <div className="ds-modal__actions">
+                {(buttonLabel || ghostButtonLabel || secondaryButtonLabel) && (
+                    <div
+                        className={classNames('ds-modal__actions', {
+                            '--scroll': isContentScrollable
+                        })}
+                    >
                         {ghostButtonLabel && (
-                            <Button
+                            <QDSButton
                                 label={ghostButtonLabel}
                                 type="ghost"
                                 clickHandler={ghostButtonHandler}
@@ -63,7 +99,7 @@ const Modal = ({
 
                         <div className="ds-modal__actions-right">
                             {secondaryButtonLabel && (
-                                <Button
+                                <QDSButton
                                     label={secondaryButtonLabel}
                                     type="secondary"
                                     clickHandler={secondaryButtonHandler}
@@ -71,20 +107,20 @@ const Modal = ({
                             )}
 
                             {buttonLabel && (
-                                <Button
+                                <QDSButton
                                     label={buttonLabel}
                                     clickHandler={buttonHandler}
                                 />
                             )}
                         </div>
                     </div>
-                </div>
-            </MuiModal>
-        </>
+                )}
+            </div>
+        </MuiModal>
     );
 };
 
-Modal.propTypes = {
+QDSModal.propTypes = {
     backdropClickable: propTypes.bool,
     buttonHandler: propTypes.func,
     buttonLabel: propTypes.string,
@@ -92,13 +128,12 @@ Modal.propTypes = {
     ghostButtonHandler: propTypes.func,
     ghostButtonLabel: propTypes.string,
     hideX: propTypes.bool,
-    linkLabel: propTypes.string,
     modalClose: propTypes.func,
     opened: propTypes.bool,
     secondaryButtonHandler: propTypes.func,
     secondaryButtonLabel: propTypes.string,
-    title: propTypes.string,
-    type: propTypes.oneOf(['alert', 'error', 'informative'])
+    type: propTypes.oneOf(['alert', 'error', 'informative', 'success']),
+    title: propTypes.string.isRequired
 };
 
-export default Modal;
+export default QDSModal;

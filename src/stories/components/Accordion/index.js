@@ -6,11 +6,12 @@ import AccordionMultipleItems from './AccordionMultipleItems';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const Accordion = ({
+const QDSAccordion = ({
+    accordionContent,
     customClasses,
-    openSingleItem,
     defaultExpanded,
-    accordionContent
+    isStandalone,
+    openSingleItem
 }) => {
     const [activeIndex, setActiveIndex] = useState(-1);
 
@@ -28,15 +29,16 @@ const Accordion = ({
         return openSingleItem ? (
             <AccordionItem
                 isExpanded={isOpen}
+                isStandalone={isStandalone}
                 onClick={toggle}
                 header={item.header}
-                icon={item.icon}
                 content={item.content}
                 key={index}
             />
         ) : (
             <AccordionMultipleItems
                 item={item}
+                isStandalone={isStandalone}
                 onClick={toggle}
                 key={index}
                 defaultExpanded={defaultExpanded}
@@ -49,11 +51,12 @@ const Accordion = ({
     );
 };
 
-Accordion.propTypes = {
+QDSAccordion.propTypes = {
+    accordionContent: PropTypes.array,
     customClasses: PropTypes.string,
-    openSingleItem: PropTypes.bool,
     defaultExpanded: PropTypes.bool,
-    accordionContent: PropTypes.array
+    isStandalone: PropTypes.bool,
+    openSingleItem: PropTypes.bool
 };
 
-export default Accordion;
+export default QDSAccordion;

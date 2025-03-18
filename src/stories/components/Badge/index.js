@@ -3,41 +3,45 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import QDSIcon from '../Icon';
 
-const Badge = ({
+const QDSBadge = ({
     customClasses = [],
-    hasNotification,
-    isCircle,
-    color,
     label,
-    secondary,
-    status
+    isSecondary,
+    status = 'neutral'
 }) => {
+    const icons = {
+        success: 'check-circle',
+        informative: 'info',
+        warning: 'warning',
+        critical: 'warning-octagon'
+    };
     return (
         <div
             className={classNames('ds-badge', customClasses, {
-                '--circle': isCircle,
-                '--secondary': secondary,
-                '--dot': hasNotification,
-                '--neutral': !status,
-                [`--${color}`]: color,
+                '--secondary': isSecondary,
                 [`--${status}`]: status
             })}
-            role={'status'}
+            role="status"
         >
+            {status !== 'neutral' && <QDSIcon name={icons[status]} />}
             {label}
         </div>
     );
 };
 
-Badge.propTypes = {
-    color: PropTypes.string,
+QDSBadge.propTypes = {
     customClasses: PropTypes.string,
-    hasNotification: PropTypes.bool,
-    isCircle: PropTypes.bool,
+    isSecondary: PropTypes.bool,
     label: PropTypes.string,
-    secondary: PropTypes.bool,
-    status: PropTypes.string
+    status: PropTypes.oneOf([
+        'neutral',
+        'informative',
+        'success',
+        'warning',
+        'critical'
+    ])
 };
 
-export default Badge;
+export default QDSBadge;

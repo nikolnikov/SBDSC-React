@@ -4,25 +4,28 @@ import React, { forwardRef } from 'react';
 import MUITooltip from '@mui/material/Tooltip';
 import PropTypes from 'prop-types';
 
-const Tooltip = forwardRef(({ children, placement = 'top', tooltip }, ref) => {
-    return (
-        <MUITooltip
-            classes={{ popper: 'ds-tooltip' }}
-            title={tooltip}
-            placement={placement}
-            ref={ref}
-        >
-            {children}
-        </MUITooltip>
-    );
-});
+const QDSTooltip = forwardRef(
+    ({ children, placement = 'top', isWhite, message }, ref) => {
+        return (
+            <MUITooltip
+                classes={{ popper: `ds-tooltip ${isWhite ? '--white' : ''}` }}
+                title={message}
+                placement={placement}
+                ref={ref}
+            >
+                {children}
+            </MUITooltip>
+        );
+    }
+);
 
-Tooltip.propTypes = {
+QDSTooltip.propTypes = {
     children: PropTypes.node,
-    placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-    tooltip: PropTypes.string
+    isWhite: PropTypes.bool,
+    message: PropTypes.string,
+    placement: PropTypes.oneOf(['top', 'bottom', 'left', 'right'])
 };
 
-Tooltip.displayName = 'Tooltip';
+QDSTooltip.displayName = 'Tooltip';
 
-export default Tooltip;
+export default QDSTooltip;

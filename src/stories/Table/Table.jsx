@@ -1,42 +1,33 @@
 import React from 'react';
-import classNames from 'classnames';
-import DSTable from '../components/Table';
+import DSTable from '../components/Table'
 import PropTypes from 'prop-types';
 
-import '!style-loader!css-loader!sass-loader!./table.scss';
-
-export const Table = ({ 
-    customClasses,
-    isExpandable = false,
-    isFlat = false,
-    isSortable = false,
-    isTransparent = false,
-    sortOrder = 'asc',
-    sortProperty = 'name',
+export const QDSTable = ({
+    hasDarkHeader = false,
+    isData = false,
+    isSortable = true,
     tableHeadData,
-    tableCellData
+    tableCellData,
+    sortOrder,
+    sortProperty
 }) => {
     return (
         <DSTable
-            customClasses={classNames(customClasses)}
-            isExpandable={isExpandable}
-            isFlat={isFlat}
+            hasDarkHeader={hasDarkHeader}
+            isData={isData}
             isSortable={isSortable}
-            isTransparent={isTransparent}
-            sortOrder={sortOrder}
-            sortProperty={sortProperty}
             tableHeadData={tableHeadData}
             tableCellData={tableCellData}
+            sortOrder={sortOrder}
+            sortProperty={sortProperty}
         />
     );
 };
 
-Table.propTypes = {
-    customClasses: PropTypes.string,
-    isExpandable: PropTypes.bool,
-    isFlat: PropTypes.bool,
+QDSTable.propTypes = {
+    hasDarkHeader: PropTypes.bool,
+    isData: PropTypes.bool,
     isSortable: PropTypes.bool,
-    isTransparent: PropTypes.bool,
     sortOrder: PropTypes.oneOf(['asc', 'desc']),
     sortProperty: PropTypes.string,
     tableHeadData: PropTypes.array.isRequired,

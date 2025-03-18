@@ -1,8 +1,8 @@
-import { Badge } from './Badge';
+import { QDSBadge } from './Badge';
 
 export default {
     title: 'Components/Badge',
-    component: Badge,
+    component: QDSBadge,
     parameters: {
         layout: 'centered',
         actions: {
@@ -15,57 +15,107 @@ export default {
     tags: ['autodocs', '!dev']
 };
 
-export const SolidBadge = {
+export const SolidNeutralBadge = {
     args: {
         label: 'Status',
         status: 'neutral'
     },
     argTypes: {
-        color: { table: { disable: true } },
         customClasses: { table: { disable: true } }
     }
 };
 
-export const SolidCircleBadge = {
+export const SolidInformativeBadge = {
     args: {
-        isCircle: true,
-        label: '#',
+        label: 'Status',
         status: 'informative'
     },
     argTypes: {
-        ...SolidBadge.argTypes
+        ...SolidNeutralBadge.argTypes
     }
 };
 
-export const SecondaryBadge = {
+export const SolidSuccessBadge = {
     args: {
         label: 'Status',
-        secondary: true,
         status: 'success'
     },
     argTypes: {
-        ...SolidBadge.argTypes
+        ...SolidNeutralBadge.argTypes
     }
 };
 
-export const SecondaryCircleBadge = {
+export const SolidCriticalBadge = {
     args: {
-        isCircle: true,
-        label: '#',
-        secondary: true,
+        label: 'Status',
+        status: 'critical'
+    },
+    argTypes: {
+        ...SolidNeutralBadge.argTypes
+    }
+};
+
+export const SolidWarningBadge = {
+    args: {
+        label: 'Status',
         status: 'warning'
     },
     argTypes: {
-        ...SolidBadge.argTypes
+        ...SolidNeutralBadge.argTypes
     }
 };
 
-export const NotificationBadge = {
+export const SecondaryNeutralBadge = {
     args: {
-        hasNotification: true,
-        status: 'error'
+        isSecondary: true,
+        label: 'Status',
+        status: 'neutral'
     },
     argTypes: {
-        ...SolidBadge.argTypes
+        customClasses: { table: { disable: true } }
+    }
+};
+
+export const SecondaryInformativeBadge = {
+    args: {
+        isSecondary: true,
+        label: 'Status',
+        status: 'informative'
+    },
+    argTypes: {
+        customClasses: { table: { disable: true } }
+    }
+};
+
+export const SecondarySuccessBadge = {
+    args: {
+        isSecondary: true,
+        label: 'Status',
+        status: 'success'
+    },
+    argTypes: {
+        customClasses: { table: { disable: true } }
+    }
+};
+
+export const SecondaryCriticalBadge = {
+    args: {
+        isSecondary: true,
+        label: 'Status',
+        status: 'critical'
+    },
+    argTypes: {
+        customClasses: { table: { disable: true } }
+    }
+};
+
+export const SecondaryWarningBadge = {
+    args: {
+        isSecondary: true,
+        label: 'Status',
+        status: 'warning'
+    },
+    argTypes: {
+        customClasses: { table: { disable: true } }
     }
 };

@@ -3,8 +3,9 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import MuiAutocomplete from '@mui/material/Autocomplete';
 import Popper from '@mui/material/Popper';
+import QDSIcon from '../Icon';
 
-const Autocomplete = ({
+const QDSAutocomplete = ({
     customClasses = [],
     errorMessage,
     hasError,
@@ -30,10 +31,55 @@ const Autocomplete = ({
         getSelection(inputValue);
     }, [getSelection, inputValue]);
 
+    const renderInput = params => (
+        <div
+            className={classNames('ds-input', customClasses, {
+                '--disabled': isDisabled,
+                '--error': hasError,
+                '--icons --icon-left': searchIcon,
+                '--required': isRequired
+            })}
+            ref={params.InputProps.ref}
+        >
+            {label && (
+                <label
+                    aria-label={label}
+                    className="ds-input__label"
+                    htmlFor={inputId}
+                >
+                    <span>{label}</span>
+                </label>
+            )}
+
+            <div className="ds-flex --start-center --row">
+                {searchIcon && <QDSIcon name="search" customClasses="--left" />}
+
+                <input
+                    placeholder={placeholder}
+                    type="text"
+                    id={inputId}
+                    {...params.inputProps}
+                />
+            </div>
+
+            {errorMessage && (
+                <div className="ds-input__error" role="alert">
+                    {errorMessage}
+                </div>
+            )}
+            {hintMessage && !errorMessage && (
+                <div className="ds-input__hint" role="tooltip">
+                    {hintMessage}
+                </div>
+            )}
+        </div>
+    );
+
     return (
         <MuiAutocomplete
             disabled={isDisabled}
             id={inputId}
+            openOnFocus={true}
             onInputChange={(e, newInputValue) => {
                 setInputValue(newInputValue);
             }}
@@ -43,59 +89,20 @@ const Autocomplete = ({
             options={optionList}
             sx={maxWidth && { width: maxWidth }}
             PopperComponent={props => (
-                <Popper {...props} className="ds-menu"></Popper>
+                <Popper {...props} className="ds-dropdown"></Popper>
             )}
             value={value}
-            renderInput={params => (
-                <div
-                    className={classNames('ds-input', customClasses, {
-                        '--disabled': isDisabled,
-                        '--error': hasError,
-                        '--icons --icon-left': searchIcon,
-                        '--required': isRequired
-                    })}
-                    ref={params.InputProps.ref}
-                >
-                    {label && (
-                        <label
-                            aria-label={label}
-                            className="ds-input__label"
-                            htmlFor={inputId}
-                        >
-                            <span>{label}</span>
-                        </label>
-                    )}
-
-                    <div className="ds-flex --start-center --row">
-                        {searchIcon && (
-                            <span className="ds-icon--search --left"></span>
-                        )}
-
-                        <input
-                            placeholder={placeholder}
-                            type="text"
-                            {...params.inputProps}
-                        />
-                    </div>
-
-                    {errorMessage && (
-                        <div className="ds-input__error">{errorMessage}</div>
-                    )}
-                    {hintMessage && (
-                        <div className="ds-input__hint">{hintMessage}</div>
-                    )}
-                </div>
-            )}
+            renderInput={renderInput}
         />
     );
 };
 
-Autocomplete.propTypes = {
+QDSAutocomplete.propTypes = {
     customClasses: PropTypes.string,
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,
     hintMessage: PropTypes.string,
-    inputId: PropTypes.string,
+    inputId: PropTypes.string.isRequired,
     isDisabled: PropTypes.bool,
     searchIcon: PropTypes.bool,
     label: PropTypes.string,
@@ -106,4 +113,4 @@ Autocomplete.propTypes = {
     optionList: PropTypes.array
 };
 
-export default Autocomplete;
+export default QDSAutocomplete;

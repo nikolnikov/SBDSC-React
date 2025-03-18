@@ -1,138 +1,141 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+'use client';
+import React, { useState } from 'react';
 import classNames from 'classnames';
-import Button from '../../Button';
-import ContextualMenu from '../../ContextualMenu';
+import PropTypes from 'prop-types';
+import QDSIconButton from '../../Button/IconButton.index';
+import QDSIcon from '../../Icon';
 
-const HeaderNav = ({
-    buttonClickHandler,
-    buttonLabel,
-    navData,
-    secondaryButton,
-    userAvatarInitial,
-    userMenuContent,
-    userName
-}) => {
-    const [userMenu, setUserMenu] = useState();
-    const [menuOpen, setMenuOpen] = useState(null);
-    const navRef = useRef(null);
+const HeaderNav = ({ children, navData, topBarData }) => {
+    const [isNavVisible, setIsNavVisible] = useState(false);
+    const [isSubNavVisible, setIsSubNavVisible] = useState(false);
 
-    const handleClick = e => {
-        setUserMenu(e.currentTarget);
-    };
-    const handleClose = () => {
-        setUserMenu();
-    };
-
-    const menuToggle = idx => {
-        setMenuOpen(prevState => (prevState === idx ? null : idx));
-    };
-
-    const handleClickOutside = useCallback(event => {
-        if (navRef.current && !navRef.current.contains(event.target)) {
-            setMenuOpen(null);
+    const toggleNav = () => {
+        if (window.innerWidth < 1024) {
+            setIsNavVisible(!isNavVisible);
         }
-    }, []);
+    };
 
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [handleClickOutside]);
+    const toggleSubNav = () => {
+        setIsSubNavVisible(!isSubNavVisible);
+    };
 
     return (
-        <nav className="ds-header__nav" ref={navRef}>
-            <div className="ds-header__nav-item-wrapper">
-                {navData &&
-                    navData.length > 0 &&
-                    navData.map((navItem, idx) => (
-                        <React.Fragment key={idx}>
+        <>
+            <nav
+                className={`ds-header__nav ${isNavVisible ? 'show' : ''}`}
+                role="navigation"
+            >
+                {(navData || []).map((navItem, idx) =>
+                    navItem.subNav ? (
+                        <div
+                            key={idx}
+                            className={classNames(
+                                'ds-header__nav-item --dropdown'
+                            )}
+                        >
+                            <a href={navItem.route} onClick={toggleSubNav}>
+                                {navItem.label}
+                            </a>
+
                             <div
-                                className={classNames('ds-header__nav-item', {
-                                    '--active': menuOpen === idx
-                                })}
+                                className={`ds-header__subnav ${
+                                    isSubNavVisible ? 'show' : ''
+                                }`}
+                                role="navigation"
                             >
-                                <button
-                                    onClick={
-                                        navItem.route
-                                            ? () =>
-                                                  (window.location.href =
-                                                      navItem.route)
-                                            : () => menuToggle(idx)
-                                    }
-                                >
-                                    {navItem.icon && (
-                                        <span
-                                            className={navItem.icon}
-                                            aria-label={navItem.label}
-                                        ></span>
-                                    )}
-                                    {navItem.label}
-                                    <span
-                                        className="ds-icon--caret-down"
-                                        aria-label="Dropdown"
-                                    ></span>
-                                </button>
+                                <div className="ds-row --max-width --margins">
+                                    <div className="ds-header__subnav-content">
+                                        <a
+                                            href={null}
+                                            onClick={toggleSubNav}
+                                            className="ds-link --icons"
+                                        >
+                                            <QDSIcon name="caret-left" />
+                                            <span>Back</span>
+                                        </a>
 
-                                {navItem.dropdownContents &&
-                                    menuOpen === idx && (
-                                        <div className="ds-header__dropdown">
-                                            {navItem.dropdownContents}
+                                        <div className="ds-header__subnav-title">
+                                            {navItem.label}
                                         </div>
-                                    )}
+
+                                        <ul className="ds-header__subnav-links">
+                                            {navItem.subNav.map(
+                                                (subNavItem, index) => (
+                                                    <li key={index}>
+                                                        <a
+                                                            href={
+                                                                subNavItem.route
+                                                            }
+                                                            className="ds-link"
+                                                        >
+                                                            {subNavItem.label}
+                                                        </a>
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+
+                                        {navItem.image && (
+                                            <div className="ds-header__subnav-img">
+                                                <img
+                                                    src={navItem.image}
+                                                    alt="header image"
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
-                        </React.Fragment>
-                    ))}
-            </div>
-
-            {buttonLabel && (
-                <Button
-                    ariaLabel={buttonLabel}
-                    clickHandler={buttonClickHandler}
-                    label={buttonLabel}
-                    size="small"
-                    type={secondaryButton ? 'secondary' : null}
-                >
-                    {buttonLabel}
-                </Button>
-            )}
-
-            {userAvatarInitial && (
-                <>
-                    <button
-                        className={classNames(
-                            'ds-header__account ds-menu__trigger',
-                            {
-                                '--opened': userMenu
-                            }
-                        )}
-                        aria-label="account menu"
-                        onClick={handleClick}
-                    >
-                        <div className="ds-avatar --solid --medium">
-                            {userAvatarInitial}
                         </div>
-                        {userName && (
-                            <div className="ds-header__account-name">
-                                {userName}
-                            </div>
-                        )}
-                        <span className="ds-icon--caret-down"></span>
-                    </button>
+                    ) : (
+                        <a
+                            key={idx}
+                            href={navItem.route}
+                            className={classNames('ds-header__nav-item')}
+                        >
+                            {navItem.label}
+                        </a>
+                    )
+                )}
 
-                    <ContextualMenu
-                        closeMenu={handleClose}
-                        menuClass="--account-menu"
-                        menuRight
-                        menuWidth={320}
-                        openMenu={userMenu}
-                    >
-                        {userMenuContent}
-                    </ContextualMenu>
-                </>
-            )}
-        </nav>
+                {topBarData && (
+                    <div className="ds-topbar">
+                        {(topBarData || []).map((navItem, idx) => (
+                            <a
+                                key={idx}
+                                href={navItem.route}
+                                className="ds-link"
+                            >
+                                {navItem.label}
+                            </a>
+                        ))}
+
+                        <button className="ds-topbar__account">
+                            <QDSIcon name="user-circle" />
+                            <span>LS</span>
+                        </button>
+                    </div>
+                )}
+            </nav>
+
+            <div className="ds-header__right">
+                <div className="ds-header__actions">{children}</div>
+
+                <div className="ds-header__mobile">
+                    <QDSIconButton
+                        icon={`${isNavVisible ? 'close' : 'menu'}`}
+                        clickHandler={toggleNav}
+                    />
+                </div>
+            </div>
+        </>
     );
+};
+
+HeaderNav.propTypes = {
+    children: PropTypes.node,
+    navData: PropTypes.array,
+    topBarData: PropTypes.array
 };
 
 export default HeaderNav;

@@ -3,7 +3,7 @@ import DSIconButton from '../components/Button/IconButton.index'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const IconButton = ({ 
+export const QDSIconButton = ({ 
     customClasses = null,
     icon = null,
     isDestructive = false,
@@ -24,12 +24,12 @@ export const IconButton = ({
     );
 };
 
-IconButton.propTypes = {
+QDSIconButton.propTypes = {
     customClasses: PropTypes.string,
     icon: PropTypes.string,
     isDestructive: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isInverse: PropTypes.bool,
     clickHandler: PropTypes.func,
-    size: PropTypes.oneOf(['small', 'medium', 'large'])
+    size: PropTypes.oneOf(['sm', 'md', 'lg'])
 };

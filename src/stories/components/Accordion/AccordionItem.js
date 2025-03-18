@@ -1,20 +1,22 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import QDSIcon from '../Icon';
 
 const AccordionItem = ({
     onClick,
     content,
     header,
-    icon,
-    isExpanded = false
+    isExpanded = false,
+    isStandalone
 }) => {
     const ariaExpanded = isExpanded ? 'true' : 'false';
 
     return (
         <div
             className={classNames('ds-accordion', {
-                '--expanded': isExpanded
+                'is-active': isExpanded,
+                '--standalone': isStandalone
             })}
         >
             <button
@@ -23,21 +25,14 @@ const AccordionItem = ({
                 onClick={() => onClick()}
                 tabIndex="0"
             >
-                <div className="ds-accordion__title-wrapper">
-                    {icon && (
-                        <span
-                            className={`ds-icon--${icon}`}
-                            aria-label={icon}
-                        ></span>
-                    )}
-                    {header}
-                </div>
-                <span className="ds-icon--expand" aria-label="expand"></span>
+                <span className="accordion-title">{header}</span>
+
+                <QDSIcon name="expand" />
             </button>
 
             <div
                 className={classNames('ds-accordion__content', {
-                    '--expanded': isExpanded
+                    'is-active': isExpanded
                 })}
             >
                 <div>{content}</div>
@@ -47,11 +42,11 @@ const AccordionItem = ({
 };
 
 AccordionItem.propTypes = {
-    icon: PropTypes.string,
     onClick: PropTypes.func,
     content: PropTypes.node,
     header: PropTypes.node,
-    isExpanded: PropTypes.bool
+    isExpanded: PropTypes.bool,
+    isStandalone: PropTypes.bool
 };
 
 export default AccordionItem;

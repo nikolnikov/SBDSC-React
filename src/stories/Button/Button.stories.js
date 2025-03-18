@@ -1,8 +1,8 @@
-import { Button } from './Button';
+import { QDSButton } from './Button';
 
 export default {
     title: 'Components/Button/Standard',
-    component: Button,
+    component: QDSButton,
     parameters: {
         layout: 'centered',
         actions: {
@@ -18,7 +18,7 @@ export default {
 export const PrimaryButton = {
     args: {
         label: 'Button label',
-        size: 'large',
+        size: 'lg',
         type: 'primary'
     },
     argTypes: {
@@ -146,6 +146,17 @@ export const DestructiveGhostButton = {
         ...PrimaryButton.args,
         isDestructive: true,
         type: 'ghost'
+    },
+    argTypes: {
+        ...PrimaryButton.argTypes
+    }
+};
+
+export const DownloadButton = {
+    args: {
+        isDownload: true,
+        size: 'lg',
+        type: 'primary'
     },
     argTypes: {
         ...PrimaryButton.argTypes

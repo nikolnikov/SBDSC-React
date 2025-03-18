@@ -1,183 +1,85 @@
-export const tableHeadDataOne = [
+export function createData(
+    gummiBears,
+    oatCakeTart,
+    applePieTopping,
+    whippedCream
+) {
+    return {
+        gummiBears,
+        oatCakeTart,
+        applePieTopping,
+        whippedCream
+    };
+}
+
+export const basicHeadData = [
     {
-        id: 'name',
-        label: 'Patient name'
+        id: 'gummiBears',
+        label: 'Gummi bears',
+        icon: 'ds-icon--info'
     },
     {
-        id: 'test',
-        label: 'Test ordered'
+        id: 'oatCakeTart',
+        label: 'Oat cake tart'
     },
     {
-        id: 'labRefId',
-        label: 'Lab ref ID'
+        id: 'applePieTopping',
+        label: 'Apple pie topping'
     },
     {
-        id: 'orderedBy',
-        label: 'Ordered by'
-    },
-    {
-        id: 'status',
-        label: 'Status'
+        id: 'whippedCream',
+        label: 'Whipped cream'
     }
 ];
 
-export const tableCellDataOne = [
-    {
-        id: 0,
-        name: 'Blake, Edward',
-        test: 'Antibody Screen, RBC with Reflex to Identification, Titer, and Antigen Typing',
-        labRefId: '1234',
-        orderedBy: 'Osterman, Jon',
-        status: 'Input needed'
-    },
-    {
-        id: 1,
-        name: 'Jupiter, Sally',
-        test: 'CBC (includes Differential and Platelets) with Automated Differential',
-        labRefId: '5678',
-        orderedBy: 'Osterman, Jon',
-        status: 'Received at Quest'
-    },
-    {
-        id: 2,
-        name: 'Kovachs, Walter',
-        test: 'Lipid Panel',
-        labRefId: '9012',
-        orderedBy: 'Osterman, Jon',
-        status: 'Resulted'
-    }
+export const basicCellData = [
+    createData(
+        `Pastry jelly-o wafer cheesecake`,
+        `<div class="ds-text-center"><span class="ds-icon--check" aria-label="check" role="img"></span></div>`,
+        `<div class="ds-text-center"><span class="ds-icon--check" aria-label="check" role="img"></span></div>`,
+        `<div class="ds-text-center"><span class="ds-icon--check" aria-label="check" role="img"></span></div>`
+    ),
+    createData(
+        `Pastry marshmallow gingerbread`,
+        ``,
+        `<div class="ds-text-center"><span class="ds-icon--check" aria-label="check" role="img"></span></div>`,
+        ``
+    )
 ];
 
-export const tableHeadDataTwo = [
+export function createData2(lastName, firstName, status) {
+    return {
+        lastName,
+        firstName,
+        status
+    };
+}
+
+export const dataTableHead = [
     {
-        id: 'toggle',
-        label: '',
-        noSort: true
+        id: 'lastName',
+        label: 'Last name'
     },
     {
-        id: 'name',
-        label: 'Patient name'
-    },
-    {
-        id: 'test',
-        label: 'Test ordered'
-    },
-    {
-        id: 'labRefId',
-        label: 'Lab ref ID'
-    },
-    {
-        id: 'orderedBy',
-        label: 'Ordered by'
+        id: 'firstName',
+        label: 'First name'
     },
     {
         id: 'status',
         label: 'Status',
-        defaultSort: true,
-        defaultSortOrder: 'asc'
-    },
-    {
-        id: 'action',
-        label: '',
         noSort: true
     }
 ];
 
-export const tableCellDataTwo = [
-    {
-        id: 0,
-        toggle: true,
-        name: 'Blake, Edward',
-        test: 'Antibody Screen, RBC with Reflex to Identification, Titer, and Antigen Typing',
-        labRefId: '1234',
-        orderedBy: 'Osterman, Jon',
-        status: 'Input needed',
-        action: {
-            menuItems: [
-                {
-                    title: 'Edit',
-                    action: () => {
-                        console.log('Edit');
-                    }
-                },
-                {
-                    title: 'Print',
-                    action: () => {
-                        console.log('Print');
-                    }
-                },
-                {
-                    title: 'Cancel',
-                    action: () => {
-                        console.log('Cancel');
-                    }
-                }
-            ]
-        },
-        expansionContent: 'Content goes here.'
-    },
-    {
-        id: 1,
-        toggle: true,
-        name: 'Jupiter, Sally',
-        test: 'CBC (includes Differential and Platelets) with Automated Differential',
-        labRefId: '5678',
-        orderedBy: 'Osterman, Jon',
-        status: 'Received at Quest',
-        action: {
-            menuItems: [
-                {
-                    title: 'Edit',
-                    action: () => {
-                        console.log('Edit');
-                    }
-                },
-                {
-                    title: 'Print',
-                    action: () => {
-                        console.log('Print');
-                    }
-                },
-                {
-                    title: 'Cancel',
-                    action: () => {
-                        console.log('Cancel');
-                    }
-                }
-            ]
-        },
-        expansionContent: 'Content goes here.'
-    },
-    {
-        id: 2,
-        toggle: true,
-        name: 'Kovachs, Walter',
-        test: 'Lipid Panel',
-        labRefId: '9012',
-        orderedBy: 'Osterman, Jon',
-        status: 'Resulted',
-        action: {
-            menuItems: [
-                {
-                    title: 'Edit',
-                    action: () => {
-                        console.log('Edit');
-                    }
-                },
-                {
-                    title: 'Print',
-                    action: () => {
-                        console.log('Print');
-                    }
-                },
-                {
-                    title: 'Cancel',
-                    action: () => {
-                        console.log('Cancel');
-                    }
-                }
-            ]
-        },
-        expansionContent: 'Content goes here.'
-    }
+export const dataTableCell = [
+    createData2(
+        `Blake`,
+        `Edward`,
+        `<div class="ds-badge --informative left-icon" aria-label="Informative" role="status"><span class="ds-icon--info" aria-label="Info" role="img"></span>Informative</div>`
+    ),
+    createData2(
+        `Jupiter`,
+        `Sally`,
+        `<div class="ds-badge --warning left-icon" aria-label="Warning" role="status"><span class="ds-icon--warning" aria-label="Info" role="img"></span>Warning</div>`
+    )
 ];

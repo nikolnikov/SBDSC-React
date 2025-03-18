@@ -1,48 +1,70 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import MuiTableHead from '@mui/material/TableHead';
-import MuiTableRow from '@mui/material/TableRow';
-import MuiTableCell from '@mui/material/TableCell';
-import MuiTableSortLabel from '@mui/material/TableSortLabel';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import TableSortLabel from '@mui/material/TableSortLabel';
+import QDSIcon from '../Icon';
 
-const TableHead = ({ order, orderBy, onRequestSort, tableHeadData }) => {
+const TableHead = ({
+    isData,
+    isSortable,
+    order,
+    orderBy,
+    onRequestSort,
+    tableHeadData
+}) => {
     const createSortHandler = property => event => {
         onRequestSort(event, property);
     };
 
     return (
         <MuiTableHead>
-            <MuiTableRow className="ds-table__head">
+            <TableRow
+                className={`${
+                    isData ? 'ds-data-table__head' : 'ds-table__table-tr'
+                }`}
+            >
                 {tableHeadData.map(headCell => (
-                    <MuiTableCell
-                        className={`ds-table__head-th ${
-                            headCell.noSort ? '--no-sort' : ''
+                    <TableCell
+                        className={`${
+                            isData
+                                ? 'ds-data-table__head-th'
+                                : 'ds-table__table-th'
+                        } --flexed-content-row ${
+                            headCell.noSort && isSortable ? '--no-sort' : ''
                         }`}
                         key={headCell.id}
+                        onClick={
+                            isSortable && isData
+                                ? createSortHandler(headCell.id)
+                                : undefined
+                        }
                         sortDirection={orderBy === headCell.id ? order : false}
                         direction={orderBy === headCell.id ? order : 'asc'}
                     >
-                        <MuiTableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : 'asc'}
-                            onClick={createSortHandler(headCell.id)}
-                            tabIndex={headCell.noSort ? -1 : 0}
-                            aria-label="sort"
-                        >
-                            {headCell.label}
-                        </MuiTableSortLabel>
-                    </MuiTableCell>
+                        {isSortable && isData ? (
+                            <TableSortLabel
+                                active={orderBy === headCell.id}
+                                direction={
+                                    orderBy === headCell.id ? order : 'asc'
+                                }
+                                tabIndex={headCell.noSort ? -1 : 0}
+                            >
+                                {headCell.label}
+                            </TableSortLabel>
+                        ) : (
+                            <div className="--flex-wrap">
+                                {headCell.label}
+                                {headCell.icon && (
+                                    <QDSIcon name={headCell.icon} />
+                                )}
+                            </div>
+                        )}
+                    </TableCell>
                 ))}
-            </MuiTableRow>
+            </TableRow>
         </MuiTableHead>
     );
-};
-
-TableHead.propTypes = {
-    onRequestSort: PropTypes.func.isRequired,
-    order: PropTypes.oneOf(['asc', 'desc']),
-    orderBy: PropTypes.string.isRequired,
-    tableHeadData: PropTypes.array.isRequired
 };
 
 export default TableHead;

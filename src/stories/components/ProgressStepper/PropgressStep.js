@@ -3,12 +3,11 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 const ProgressStep = ({
-    isCancelled,
-    isError,
+    isSentBack,
     isCompleted,
     isCurrent,
+    isError,
     isVertical,
-    isWarning,
     showNumbers,
     stepLabel,
     subLabel
@@ -21,8 +20,7 @@ const ProgressStep = ({
                 completed: isCompleted,
                 current: isCurrent,
                 error: isError,
-                warning: isWarning,
-                cancelled: isCancelled
+                'sent-back': isSentBack
             })}
         >
             <span className="ds-flex --start-center">
@@ -34,11 +32,10 @@ const ProgressStep = ({
             </span>
             {stepLabel && (
                 <label
-                    className={classNames('ds-step__label', {
-                        'ds-flex --row --wrap': subLabel,
-                        '--start-start': isVertical,
-                        '--center-start': !isVertical
-                    })}
+                    className={`ds-flex --column ${
+                        isVertical ? '--start-start' : '--center-center'
+                    }`}
+                    aria-label={stepLabel}
                 >
                     <span>{stepLabel}</span>
                     {subLabel && (
@@ -53,12 +50,11 @@ const ProgressStep = ({
 };
 
 ProgressStep.propTypes = {
-    isCancelled: PropTypes.bool,
     isError: PropTypes.bool,
+    isSentBack: PropTypes.bool,
     isCompleted: PropTypes.bool,
     isCurrent: PropTypes.bool,
     isVertical: PropTypes.bool,
-    isWarning: PropTypes.bool,
     showNumbers: PropTypes.number,
     stepLabel: PropTypes.string,
     subLabel: PropTypes.string

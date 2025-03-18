@@ -4,11 +4,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const Tabs = ({
+const QDSTabs = ({
     children,
-    contentClasses = [],
+    contentClasses,
     labels,
-    defaultSelectedTab
+    defaultSelectedTab = 0,
+    isCentered
 }) => {
     const [selectedValue, setSelectedValue] = useState(defaultSelectedTab);
     const tabContent = children;
@@ -51,7 +52,13 @@ const Tabs = ({
 
     return (
         <div className="ds-tab__wrapper">
-            <div className="ds-tab-set">{tabItems}</div>
+            <div
+                className={classNames('ds-tab-set', {
+                    '--centered': isCentered
+                })}
+            >
+                {tabItems}
+            </div>
             <div className={contentClasses} role="tabpanel">
                 {tabContent[selectedValue]}
             </div>
@@ -59,18 +66,20 @@ const Tabs = ({
     );
 };
 
-Tabs.propTypes = {
+QDSTabs.propTypes = {
     children: PropTypes.arrayOf(
         PropTypes.oneOfType([PropTypes.object, PropTypes.node])
     ).isRequired,
     contentClasses: PropTypes.string,
+    isDisabled: PropTypes.bool,
     labels: PropTypes.arrayOf(
         PropTypes.shape({
             isDisabled: PropTypes.bool,
             name: PropTypes.string.isRequired
         })
     ).isRequired,
-    defaultSelectedTab: PropTypes.number
+    defaultSelectedTab: PropTypes.number,
+    isCentered: PropTypes.bool
 };
 
-export default Tabs;
+export default QDSTabs;

@@ -1,8 +1,9 @@
-import { Message } from './Message';
+import React from 'react';
+import { QDSMessage } from './Message';
 
 export default {
     title: 'Components/Message',
-    component: Message,
+    component: QDSMessage,
     parameters: {
         layout: 'centered',
         actions: {
@@ -17,51 +18,72 @@ export default {
 
 export const InformativeMessage = {
     args: {
-        actions: [
-            { title: 'Yes', action: null },
-            { title: 'No', action: null }
-        ],
-        closeHandler: () => {
-            console.log('Message closed');
-        },
-        hideX: false,
+        children: (
+            <>
+                <a className="ds-link" href={null}>
+                    Yes
+                </a>
+
+                <a className="ds-link" href={null}>
+                    No
+                </a>
+            </>
+        ),
+        closeHandler: () => {},
         message:
             "We've sent you an email detailing your recent account changes. Didn't receive an email? Click below.",
-        noIcon: false,
         title: 'Heading',
         type: 'informative'
     },
     argTypes: {
-        closeHandler: { table: { disable: true } }
+        closeHandler: { table: { disable: true } },
+        customClasses: { table: { disable: true } }
     }
 };
 
 export const SuccessMessage = {
     args: {
-        ...InformativeMessage.args,
+        message:
+            "We've sent you an email detailing your recent account changes.",
+        title: 'Heading',
         type: 'success'
     },
     argTypes: {
-        ...InformativeMessage.argTypes
-    }
-};
-
-export const ErrorMessage = {
-    args: {
-        ...InformativeMessage.args,
-        type: 'error'
-    },
-    argTypes: {
-        ...InformativeMessage.argTypes
+        closeHandler: { table: { disable: true } },
+        customClasses: { table: { disable: true } }
     }
 };
 
 export const WarningMessage = {
     args: {
-        ...InformativeMessage.args,
+        children: (
+            <>
+                <a className="ds-link" href={null}>
+                    Yes
+                </a>
+
+                <a className="ds-link" href={null}>
+                    No
+                </a>
+            </>
+        ),
+        inlineActions: true,
+        message: 'Would you like to proceed with the change?',
         type: 'warning'
     },
     argTypes: {
-        ...InformativeMessage.argTypes
+        closeHandler: { table: { disable: true } },
+        customClasses: { table: { disable: true } }
+    }
+};
+
+export const ErrorMessage = {
+    args: {
+        message: 'An error has occured. Please try again.',
+        type: 'error'
+    },
+    argTypes: {
+        closeHandler: { table: { disable: true } },
+        customClasses: { table: { disable: true } }
     }
 };

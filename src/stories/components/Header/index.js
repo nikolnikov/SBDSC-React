@@ -4,77 +4,64 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import HeaderNav from './HeaderNav';
-import HeaderSubNav from './HeaderSubNav';
+import HeaderTopBar from './HeaderTopBar';
 
-const Header = ({
-    buttonClickHandler,
-    buttonLabel,
-    customClasses = [],
+const QDSHeader = ({
+    children,
+    customClasses,
     logo,
-    logoSize,
     noMargins,
     noMaxWidth,
     navData,
-    secondaryButton,
-    subNavData,
-    userAvatarInitial,
-    userMenuContent,
-    userName
+    topBarData,
+    userAccountData
 }) => {
     return (
-        <header className="ds-header">
-            <div
-                className={classNames('ds-grid', customClasses, {
-                    '--margins': !noMargins,
-                    '--max-width': !noMaxWidth
-                })}
-            >
-                <a
-                    className={classNames('ds-brand-wrapper', {
-                        [`--${logoSize}`]: logoSize
-                    })}
-                    href="/"
-                >
-                    <img src={logo} alt="logo" />
-                </a>
-
-                <HeaderNav
-                    buttonClickHandler={buttonClickHandler}
-                    buttonLabel={buttonLabel}
-                    navData={navData}
-                    secondaryButton={secondaryButton}
-                    userAvatarInitial={userAvatarInitial}
-                    userMenuContent={userMenuContent}
-                    userName={userName}
-                />
-            </div>
-
-            {subNavData && subNavData.length > 0 && (
-                <HeaderSubNav
-                    customClasses={customClasses}
-                    noMargins={noMargins}
-                    noMaxWidth={noMaxWidth}
-                    subNavData={subNavData}
+        <div className="ds-header__wrapper">
+            {topBarData && (
+                <HeaderTopBar
+                    topBarData={topBarData}
+                    userAccountData={userAccountData}
                 />
             )}
-        </header>
+
+            <header className="ds-header --react">
+                <div
+                    className={classNames('ds-grid', customClasses, {
+                        '--margins': !noMargins,
+                        '--max-width': !noMaxWidth
+                    })}
+                >
+                    <a className="ds-header__logo" href="/">
+                        <img src={logo} alt="logo" />
+                    </a>
+
+                    {navData ? (
+                        <HeaderNav
+                            children={children}
+                            navData={navData}
+                            topBarData={topBarData}
+                        />
+                    ) : (
+                        <div className="ds-header__right">
+                            <div className="ds-header__actions">{children}</div>
+                        </div>
+                    )}
+                </div>
+            </header>
+        </div>
     );
 };
 
-Header.propTypes = {
-    buttonClickHandler: PropTypes.func,
-    buttonLabel: PropTypes.string,
-    customClasses: PropTypes.array,
+QDSHeader.propTypes = {
+    children: PropTypes.node,
+    customClasses: PropTypes.string,
     logo: PropTypes.string,
-    logoSize: PropTypes.string,
     noMargins: PropTypes.bool,
     noMaxWidth: PropTypes.bool,
     navData: PropTypes.array,
-    secondaryButton: PropTypes.bool,
-    subNavData: PropTypes.array,
-    userAvatarInitial: PropTypes.string,
-    userMenuContent: PropTypes.node,
-    userName: PropTypes.string
+    topBarData: PropTypes.array,
+    userAccountData: PropTypes.object
 };
 
-export default Header;
+export default QDSHeader;

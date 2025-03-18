@@ -1,24 +1,27 @@
 import React from 'react';
-import DSTooltip from '../components/Tooltip';
+import DSTooltip from '../components/Tooltip'
 import PropTypes from 'prop-types';
 
-export const Tooltip = ({ 
-    children, 
-    placement = "top",
-    tooltip
+export const QDSTooltip = ({
+    children,
+    placement = 'top',
+    isWhite = false,
+    message
 }) => {
     return (
         <DSTooltip
             placement={placement}
-            tooltip={tooltip}
+            isWhite={isWhite}
+            message={message}
         >
             {children}
         </DSTooltip>
     );
 };
 
-Tooltip.propTypes = {
+QDSTooltip.propTypes = {
     children: PropTypes.node,
-    placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-    tooltip: PropTypes.string,
+    isWhite: PropTypes.bool,
+    message: PropTypes.string,
+    placement: PropTypes.oneOf(['top', 'bottom', 'left', 'right'])
 };

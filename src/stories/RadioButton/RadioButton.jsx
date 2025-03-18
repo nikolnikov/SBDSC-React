@@ -1,16 +1,17 @@
 import React from 'react';
-import DSRadioButton from '../components/RadioButton';
+import DSRadioButton from '../components/RadioButton'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const RadioButton = ({ 
-    customClasses = [],
+export const QDSRadioButton = ({
+    customClasses,
     inputId,
     isChecked = false,
     isDisabled = false,
     label,
     name,
     onChange,
+    isRequired,
     value
 }) => {
     return (
@@ -22,12 +23,13 @@ export const RadioButton = ({
             label={label}
             name={name}
             onChange={onChange}
+            isRequired={isRequired}
             value={value}
         />
     );
 };
 
-RadioButton.propTypes = {
+QDSRadioButton.propTypes = {
     customClasses: PropTypes.string,
     inputId: PropTypes.string.isRequired,
     isChecked: PropTypes.bool,
@@ -35,5 +37,6 @@ RadioButton.propTypes = {
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    isRequired: PropTypes.bool,
     value: PropTypes.string.isRequired
 };

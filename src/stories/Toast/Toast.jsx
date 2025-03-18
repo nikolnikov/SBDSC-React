@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import DSToast from '../components/Toast';
+import DSToast from '../components/Toast'
+import QDSButton from '../components/Button'
 import PropTypes from 'prop-types';
 
-export const Toast = ({ 
+export const QDSToast = ({
     duration,
     message,
     noIcon = false,
+    onClose,
+    opened,
     textLinkLabel,
     type
 }) => {
@@ -17,34 +20,32 @@ export const Toast = ({
 
     return (
         <>
-            <button
-                className="ds-button --primary"
-                onClick={showToast}
-            >
-                Open toast
-            </button>
+            <QDSButton
+                clickHandler={showToast}
+                label="Open toast"
+            />
 
             <DSToast
                 duration={duration}
                 message={message}
                 noIcon={noIcon}
                 onClose={() => {
-                    setToastOpen(false);
-                }}
+                        setToastOpen(false);
+                    }}
                 opened={toastOpen}
-                textLinkLabel={textLinkLabel}
                 type={type}
+                textLinkLabel={textLinkLabel}
             />
         </>
     );
 };
 
-Toast.propTypes = {
+QDSToast.propTypes = {
     duration: PropTypes.number,
     message: PropTypes.string.isRequired,
     noIcon: PropTypes.bool,
     onClose: PropTypes.func,
     opened: PropTypes.bool,
     textLinkLabel: PropTypes.string,
-    type: PropTypes.oneOf(['success', 'error', 'alert', 'informative'])
+    status: PropTypes.oneOf(['success', 'error', 'alert', 'informative'])
 };

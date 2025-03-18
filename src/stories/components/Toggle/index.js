@@ -4,15 +4,14 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const Toggle = ({
+const QDSToggle = ({
     isChecked,
-    customClasses = [],
+    customClasses,
     isDisabled,
     inputId,
-    leftLabel,
+    label,
     name,
-    onChange,
-    rightLabel
+    onChange
 }) => {
     return (
         <div
@@ -20,40 +19,29 @@ const Toggle = ({
                 '--disabled': isDisabled
             })}
         >
-            {leftLabel && (
-                <div className="ds-toggle-switch__label" aria-label={inputId}>
-                    {leftLabel}
-                </div>
-            )}
-            <label className="ds-toggle-switch__container" htmlFor={inputId}>
+            <label htmlFor={inputId}>
                 <input
-                    disabled={isDisabled}
                     type="checkbox"
-                    id={inputId}
                     name={name}
+                    id={inputId}
                     {...(isChecked && { defaultChecked: true })}
                     onChange={onChange}
                 />
-                <div className="ds-toggle-switch__slider"></div>
+                <div className="--slider"></div>
             </label>
-            {rightLabel && (
-                <div className="ds-toggle-switch__label" aria-label={inputId}>
-                    {rightLabel}
-                </div>
-            )}
+            <span aria-label={inputId}>{label}</span>
         </div>
     );
 };
 
-Toggle.propTypes = {
+QDSToggle.propTypes = {
     isChecked: PropTypes.bool,
     customClasses: PropTypes.string,
     isDisabled: PropTypes.bool,
     inputId: PropTypes.string.isRequired,
-    leftLabel: PropTypes.string,
+    label: PropTypes.string,
     name: PropTypes.string,
-    onChange: PropTypes.func,
-    rightLabel: PropTypes.string
+    onChange: PropTypes.func
 };
 
-export default Toggle;
+export default QDSToggle;

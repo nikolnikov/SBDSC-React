@@ -3,9 +3,9 @@
 import React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import Tooltip from '../Tooltip';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import QDSIconButton from '../Button/IconButton.index';
 
 const InputSelect = ({
     customClasses = [],
@@ -33,19 +33,13 @@ const InputSelect = ({
         >
             <label className="ds-input__label" htmlFor={inputId}>
                 {label && <span>{label}</span>}
+
                 {tooltipMessage && (
-                    <Tooltip title={tooltipMessage}>
-                        <button
-                            className="ds-tooltip ds-button --icon --sm"
-                            aria-label="tooltip"
-                        >
-                            <span
-                                className="ds-icon--info"
-                                aria-label="info filled"
-                                role="img"
-                            />
-                        </button>
-                    </Tooltip>
+                    <QDSIconButton
+                        customClasses="ds-tooltip"
+                        icon="info"
+                        tooltip={tooltipMessage}
+                    />
                 )}
             </label>
             <Select
@@ -74,6 +68,7 @@ const InputSelect = ({
             >
                 {options.map((label, idx) => (
                     <MenuItem
+                        style={{ whiteSpace: 'normal' }}
                         className="ds-dropdown__item"
                         key={idx}
                         value={label}
@@ -83,9 +78,15 @@ const InputSelect = ({
                 ))}
             </Select>
             {errorMessage && (
-                <div className="ds-input__error">{errorMessage}</div>
+                <div className="ds-input__error" role="alert">
+                    {errorMessage}
+                </div>
             )}
-            {hintMessage && <div className="ds-input__hint">{hintMessage}</div>}
+            {hintMessage && !errorMessage && (
+                <div className="ds-input__hint" role="tooltip">
+                    {hintMessage}
+                </div>
+            )}
         </div>
     );
 };

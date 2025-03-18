@@ -1,10 +1,17 @@
 import React from 'react';
-import DSAvatar from '../components/Avatar';
-import { Header } from './Header';
+import { QDSHeader } from './Header';
+import { QDSButton } from '../Button/Button';
+import { QDSInput } from '../Input/Input';
+import {
+    headerNavData,
+    headerNavData2,
+    topBarData,
+    userAccountData
+} from './data';
 
 export default {
     title: 'Components/Navigation/Header',
-    component: Header,
+    component: QDSHeader,
     parameters: {
         layout: 'centered',
         actions: {
@@ -17,93 +24,62 @@ export default {
     tags: ['autodocs', '!dev']
 };
 
-const headerNavData = [
-    {
-        label: 'Menu item',
-        icon: 'ds-icon--user-circle',
-        route: null,
-        hasDropdown: false,
-        dropdownContents: null
-    },
-    {
-        label: 'Menu item',
-        icon: 'ds-icon--user-circle',
-        route: null,
-        hasDropdown: true,
-        dropdownContents: 'Dropdown content goes here.'
-    }
-];
-
-const avatarMenuContent = (
-    <div className="ds-ptb-16 ds-flex --column">
-        <div className="ds-plr-12 ds-flex --row --start-center">
-            <DSAvatar size="small" initial="E" />
-
-            <h4 className="ds-m-0 ds-ml-8">Edward, Blake</h4>
-        </div>
-
-        <hr className="ds-mtb-12 ds-gray__100--bg" />
-
-        <button className="ds-menu__item">Sign out</button>
-    </div>
-);
-
-export const BasicHeader = {
+export const HeaderWithNavigationAndToolbar = {
     args: {
-        logo: 'https://ds.cdn.questdiagnostics.com/assets/img/qd-brand--horizontal--green.svg',
-        logoSize: 'medium'
+        children: (
+            <QDSButton
+                customClasses="--md-d-none"
+                clickHandler={() => {}}
+                label="Button"
+                size="sm"
+            />
+        ),
+        logo: 'https://ds.cdn.questdiagnostics.com/assets/img/quest-logo.svg',
+        navData: headerNavData,
+        topBarData: topBarData,
+        userAccountData: userAccountData
     },
     argTypes: {
-        buttonClickHandler: { table: { disable: true } },
         customClasses: { table: { disable: true } },
-        customContent: { table: { disable: true } },
-        logoSize: { table: { disable: true } },
         noMargins: { table: { disable: true } },
-        noMaxWidth: { table: { disable: true } },
-        userMenuContent: { table: { disable: true } }
-    }
-};
-
-export const HeaderWithAvatar = {
-    args: {
-        ...BasicHeader.args,
-        userAvatarInitial: 'E',
-        userMenuContent: avatarMenuContent
-    },
-    argTypes: {
-        ...BasicHeader.argTypes
-    }
-};
-
-export const HeaderWithButton = {
-    args: {
-        ...BasicHeader.args,
-        buttonClickHandler: () => {},
-        buttonLabel: 'Sign in'
-    },
-    argTypes: {
-        ...BasicHeader.argTypes
-    }
-};
-
-export const HeaderWithSecondaryButton = {
-    args: {
-        ...BasicHeader.args,
-        buttonClickHandler: () => {},
-        buttonLabel: 'Sign in',
-        secondaryButton: true
-    },
-    argTypes: {
-        ...BasicHeader.argTypes
+        noMaxWidth: { table: { disable: true } }
     }
 };
 
 export const HeaderWithNavigation = {
     args: {
-        ...BasicHeader.args,
-        navData: headerNavData
+        logo: 'https://ds.cdn.questdiagnostics.com/assets/img/quest-logo.svg',
+        navData: headerNavData2
     },
     argTypes: {
-        ...BasicHeader.argTypes
+        ...HeaderWithNavigationAndToolbar.argTypes
+    }
+};
+
+export const HeaderWithSearch = {
+    args: {
+        children: (
+            <QDSInput
+                inputId="search-input"
+                leftIcon="search"
+                name="search-input"
+                placeholder="Search"
+                type="text"
+                onChange={() => {}}
+            />
+        ),
+        logo: 'https://ds.cdn.questdiagnostics.com/assets/img/quest-logo.svg'
+    },
+    argTypes: {
+        ...HeaderWithNavigationAndToolbar.argTypes
+    }
+};
+
+export const BasicHeader = {
+    args: {
+        logo: 'https://ds.cdn.questdiagnostics.com/assets/img/quest-logo.svg'
+    },
+    argTypes: {
+        ...HeaderWithNavigationAndToolbar.argTypes
     }
 };

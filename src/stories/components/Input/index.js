@@ -3,34 +3,34 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import Tooltip from '../Tooltip';
+import QDSIconButton from '../Button/IconButton.index';
+import QDSIcon from '../Icon';
 
 const Input = ({
-    customClasses = [],
+    customClasses,
     errorMessage,
     hasError,
     hintMessage,
     inputId,
     isDisabled,
-    isLoading,
     isRequired,
     label,
-    iconLeft,
-    iconRight,
+    leftIcon,
     name,
     onChange,
     placeholder,
+    rightIcon,
     tooltipMessage,
-    type
+    type = 'text'
 }) => {
     return (
         <div
             className={classNames('ds-input', customClasses, {
                 '--disabled': isDisabled,
                 '--error': hasError,
-                '--icons': iconRight || iconLeft || isLoading,
-                '--icon-left': iconLeft,
-                '--icon-right': iconRight || isLoading,
+                '--icons': rightIcon || leftIcon,
+                '--icon-left': leftIcon,
+                '--icon-right': rightIcon,
                 '--required': isRequired
             })}
         >
@@ -38,28 +38,15 @@ const Input = ({
                 {label && <span>{label}</span>}
 
                 {tooltipMessage && (
-                    <Tooltip title={tooltipMessage}>
-                        <button
-                            className="ds-tooltip ds-button --icon --sm"
-                            aria-label="tooltip"
-                        >
-                            <span
-                                className="ds-icon--info"
-                                aria-label="info filled"
-                                role="img"
-                            ></span>
-                        </button>
-                    </Tooltip>
+                    <QDSIconButton
+                        customClasses="ds-tooltip"
+                        icon="info"
+                        tooltip={tooltipMessage}
+                    />
                 )}
             </label>
             <div className="ds-flex --start-center --row">
-                {iconLeft && (
-                    <span
-                        className={`ds-icon--${iconLeft} --left`}
-                        aria-label={`${iconLeft}`}
-                        role="img"
-                    ></span>
-                )}
+                {leftIcon && <QDSIcon name={leftIcon} customClasses="--left" />}
                 <input
                     disabled={isDisabled}
                     id={inputId}
@@ -68,24 +55,8 @@ const Input = ({
                     type={type}
                     onChange={value => onChange(value)}
                 />
-                {iconRight && (
-                    <span
-                        className={`ds-icon--${iconRight} --right`}
-                        aria-label={`${iconRight}`}
-                        role="img"
-                    ></span>
-                )}
-                {isLoading && (
-                    <div
-                        className="ds-loading --small --right"
-                        aria-label="loading"
-                        role="progressbar"
-                    >
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
+                {rightIcon && (
+                    <QDSIcon name={rightIcon} customClasses="--right" />
                 )}
             </div>
 
@@ -94,7 +65,7 @@ const Input = ({
                     {errorMessage}
                 </div>
             )}
-            {hintMessage && (
+            {hintMessage && !errorMessage && (
                 <div className="ds-input__hint" role="tooltip">
                     {hintMessage}
                 </div>
@@ -108,16 +79,15 @@ Input.propTypes = {
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,
     hintMessage: PropTypes.string,
-    inputId: PropTypes.string,
+    inputId: PropTypes.string.isRequired,
     isDisabled: PropTypes.bool,
-    isLoading: PropTypes.bool,
     isRequired: PropTypes.bool,
     label: PropTypes.string,
-    iconLeft: PropTypes.string,
-    iconRight: PropTypes.string,
+    leftIcon: PropTypes.string,
     name: PropTypes.string,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
+    rightIcon: PropTypes.string,
     tooltipMessage: PropTypes.string,
     type: PropTypes.string
 };

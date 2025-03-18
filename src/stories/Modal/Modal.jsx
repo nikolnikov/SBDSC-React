@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import DSModal from '../components/Modal';
+import QDSButton from '../components/Button';
+import DSModal from '../components/Modal'
 import PropTypes from 'prop-types';
 
-export const Modal = ({ 
+export const QDSModal = ({ 
     backdropClickable = true,
     buttonHandler,
     buttonLabel,
@@ -10,10 +11,12 @@ export const Modal = ({
     ghostButtonHandler,
     ghostButtonLabel,
     hideX = false,
+    modalClose,
+    opened,
     secondaryButtonHandler,
     secondaryButtonLabel,
-    type,
-    title
+    title,
+    type
 }) => {
     const [showModal, setShowModal] = useState(false);
 
@@ -52,11 +55,11 @@ export const Modal = ({
     );
 };
 
-Modal.propTypes = {
+QDSModal.propTypes = {
     backdropClickable: PropTypes.bool,
     buttonHandler: PropTypes.func,
     buttonLabel: PropTypes.string,
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     ghostButtonHandler: PropTypes.func,
     ghostButtonLabel: PropTypes.string,
     hideX: PropTypes.bool,
@@ -64,6 +67,6 @@ Modal.propTypes = {
     opened: PropTypes.bool,
     secondaryButtonHandler: PropTypes.func,
     secondaryButtonLabel: PropTypes.string,
-    title: PropTypes.string,
-    type: PropTypes.oneOf(['alert', 'error', 'informative'])
+    title: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['alert', 'error', 'informative', 'success']),
 };

@@ -9,7 +9,7 @@ import DatePickerInput from './DatePickerInput';
 import Caption from './Caption';
 import Overlay from '../Overlay';
 
-const DatePicker = ({
+const QDSDatepicker = ({
     customClasses,
     errorMessage,
     hasError,
@@ -20,7 +20,6 @@ const DatePicker = ({
     isRange,
     isRequired,
     label,
-    placeholder,
     offset,
     showOnTop
 }) => {
@@ -40,7 +39,7 @@ const DatePicker = ({
     const DAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
     const toggleCalendar = () => {
-        const yPositionOffset = showOnTop ? offset || -335 : offset || 63;
+        const yPositionOffset = showOnTop ? offset || -322 : offset || 73;
 
         setCalendarPositionY(
             () => (inputRef.current.style.top = 0 + yPositionOffset)
@@ -150,10 +149,10 @@ const DatePicker = ({
                               disabled: { before: new Date() }
                           }
                         : disabledDays === 'future'
-                          ? {
-                                disabled: { after: new Date() }
-                            }
-                          : {})}
+                        ? {
+                              disabled: { after: new Date() }
+                          }
+                        : {})}
                     style={{ top: calendarPositionY, right: 0 }}
                     {...(isRange
                         ? {
@@ -198,10 +197,10 @@ const DatePicker = ({
                     toggleCalendar={toggleCalendar}
                     label={label}
                     inputRef={inputRef}
+                    inputId={inputId}
                     isDisabled={isDisabled}
                     isRange={isRange}
                     isRequired={isRequired}
-                    placeholder={placeholder}
                     {...(isRange
                         ? {
                               fromDate: fromDate,
@@ -225,20 +224,19 @@ const DatePicker = ({
     );
 };
 
-DatePicker.propTypes = {
+QDSDatepicker.propTypes = {
     customClasses: PropTypes.string,
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,
     hintMessage: PropTypes.string,
     disabledDays: PropTypes.oneOf(['past', 'future']),
-    inputId: PropTypes.string.isRequired,
+    inputId: PropTypes.string,
     isDisabled: PropTypes.bool,
     isRange: PropTypes.bool,
     isRequired: PropTypes.bool,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     offset: PropTypes.number,
-    placeholder: PropTypes.string,
     showOnTop: PropTypes.bool
 };
 
-export default DatePicker;
+export default QDSDatepicker;

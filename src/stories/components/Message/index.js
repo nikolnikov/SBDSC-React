@@ -1,85 +1,73 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import IconButton from '../Button/IconButton.index';
+import QDSIconButton from '../Button/IconButton.index';
+import QDSIcon from '../Icon';
 
-const Message = ({
-    actions,
+const QDSMessage = ({
+    children,
     closeHandler,
     customClasses,
-    hideX,
+    inlineActions,
     message,
     noIcon,
     title,
     type
 }) => {
     const iconType = {
-        informative: { className: 'ds-icon--info', label: 'informative' },
-        success: { className: 'ds-icon--check-circle', label: 'success' },
-        warning: { className: 'ds-icon--warning', label: 'alert' },
-        error: { className: 'ds-icon--warning-octagon', label: 'error' }
+        informative: 'info',
+        success: 'check-circle',
+        warning: 'warning',
+        error: 'warning-octagon'
     };
 
     const icon = iconType[type];
 
     return (
         <div
-            className={classNames(`ds-message --${type}`, customClasses)}
+            className={classNames(
+                `ds-message ${type ? `--${type}` : ''}`,
+                customClasses
+            )}
             role="alert"
         >
             {!noIcon && (
                 <div className="ds-message__icon">
-                    {icon && (
-                        <span
-                            className={icon.className}
-                            aria-label={icon.label}
-                            role="img"
-                        ></span>
-                    )}
+                    <QDSIcon name={type ? icon : 'chat-teardrop-text'} />
                 </div>
             )}
             <div className="ds-message__content">
-                {title && <h3>{title}</h3>}
+                {title && <div className="ds-message__title">{title}</div>}
+
                 {message}
 
-                {actions && (
-                    <div className="ds-message__actions">
-                        {actions.map((action, index) => (
-                            <a
-                                key={index}
-                                className="ds-link"
-                                href={action.action}
-                            >
-                                {action.title}
-                            </a>
-                        ))}
+                {children && (
+                    <div
+                        className={`ds-message__actions ${
+                            inlineActions ? '--inline' : ''
+                        }`}
+                    >
+                        {children}
                     </div>
                 )}
             </div>
 
-            {!hideX && (
-                <div className="ds-message__close">
-                    <IconButton
-                        icon="close"
-                        label="close"
-                        clickHandler={closeHandler}
-                        size="medium"
-                    />
-                </div>
+            {closeHandler && (
+                <QDSIconButton icon="close" clickHandler={closeHandler} />
             )}
         </div>
     );
 };
 
-Message.propTypes = {
-    actions: PropTypes.array,
+QDSMessage.propTypes = {
+    children: PropTypes.node,
     closeHandler: PropTypes.func,
     customClasses: PropTypes.string,
+    inlineActions: PropTypes.bool,
     message: PropTypes.node.isRequired,
     noIcon: PropTypes.bool,
     title: PropTypes.string,
     type: PropTypes.oneOf(['informative', 'success', 'warning', 'error'])
-        .isRequired
 };
 
-export default Message;
+export default QDSMessage;

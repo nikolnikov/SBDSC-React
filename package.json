@@ -1,5 +1,5 @@
 {
-  "name": "ds-pro-react",
+  "name": "ds-consumer-react",
   "version": "0.9.0",
   "private": false,
   "dependencies": {
@@ -74,7 +74,7 @@
     "scss": "sass src/sass:src/css --watch --no-source-map",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 7007",
     "build-storybook": "storybook build"
   },
   "eslintConfig": {

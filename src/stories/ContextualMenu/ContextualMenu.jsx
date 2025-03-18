@@ -3,10 +3,10 @@ import DSMenu from '../components/ContextualMenu';
 import DSIconButton from '../components/Button/IconButton.index';
 import PropTypes from 'prop-types';
 
-export const ContextualMenu = ({ 
+export const QDSContextualMenu = ({ 
     menuItems,
     menuRight = false,
-    menuWidth,
+    menuWidth = 150,
     menuClass,
 }) => {
     const [menu, setMenu] = useState();
@@ -36,7 +36,7 @@ export const ContextualMenu = ({
     );
 };
 
-ContextualMenu.propTypes = {
+QDSContextualMenu.propTypes = {
     children: PropTypes.node,
     closeMenu: PropTypes.func,
     menuItems: PropTypes.array,

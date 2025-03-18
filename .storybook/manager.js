@@ -10,5 +10,5 @@ addons.setConfig({
         brandImage:
             'https://ds.cdn.questdiagnostics.com/assets/img/qd-brand--horizontal--white.svg'
     }),
-    title: 'DSP React Storybook'
+    title: 'DSC React Storybook'
 });

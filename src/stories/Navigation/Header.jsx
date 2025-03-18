@@ -1,53 +1,39 @@
 import React from 'react';
-import DSHeader from '../components/Header';
+import DSHeader from '../components/Header'
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const Header = ({ 
-    buttonClickHandler,
-    buttonLabel,
-    customContent,
-    hasNav = true,
+export const QDSHeader = ({ 
+    children,
+    customClasses,
     logo,
-    logoSize,
-    navData,
     noMargins = false,
     noMaxWidth = false,
-    secondaryButton = false,
-    userAvatarInitial,
-    userMenuContent,
-    userName
+    navData,
+    topBarData,
+    userAccountData
 }) => {
     return (
         <DSHeader
-            buttonClickHandler={buttonClickHandler}
-            buttonLabel={buttonLabel}
-            customContent={customContent}
-            hasNav={hasNav}
+            children={children}
+            customClasses={classNames(customClasses)}
             logo={logo}
-            logoSize={logoSize}
             noMargins={noMargins}
-            navData={navData}
-            secondaryButton={secondaryButton}
             noMaxWidth={noMaxWidth}
-            userAvatarInitial={userAvatarInitial}
-            userMenuContent={userMenuContent}
-            userName={userName}
+            navData={navData}
+            topBarData={topBarData}
+            userAccountData={userAccountData}
         />
     );
 };
 
-Header.propTypes = {
-    buttonClickHandler: PropTypes.func,
-    buttonLabel: PropTypes.string,
-    customContent: PropTypes.node,
-    hasNav: PropTypes.bool,
+QDSHeader.propTypes = {
+    children: PropTypes.node,
+    customClasses: PropTypes.string,
     logo: PropTypes.string,
-    logoSize: PropTypes.string,
-    navData: PropTypes.array,
     noMargins: PropTypes.bool,
     noMaxWidth: PropTypes.bool,
-    secondaryButton: PropTypes.bool,
-    userAvatarInitial: PropTypes.string,
-    userMenuContent: PropTypes.node,
-    userName: PropTypes.string
+    navData: PropTypes.array,
+    topBarData: PropTypes.array,
+    userAccountData: PropTypes.object
 };

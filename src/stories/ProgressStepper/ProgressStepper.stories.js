@@ -1,8 +1,8 @@
-import { ProgressStepper } from './ProgressStepper';
+import { QDSProgressStepper } from './ProgressStepper';
 
 export default {
     title: 'Components/Progress stepper',
-    component: ProgressStepper,
+    component: QDSProgressStepper,
     parameters: {
         layout: 'centered',
         actions: {
@@ -45,10 +45,10 @@ export const DefaultProgressStepper = {
     }
 };
 
-export const ProgressStepperWithCancelledStep = {
+export const ProgressStepperWithSentBackStep = {
     args: {
         lastCompletedStep: 0,
-        isCancelled: 1,
+        isSentBack: 1,
         steps: stepperData
     },
     argTypes: {
@@ -60,17 +60,6 @@ export const ProgressStepperWithErrorStep = {
     args: {
         lastCompletedStep: 1,
         isError: 2,
-        steps: stepperData
-    },
-    argTypes: {
-        ...DefaultProgressStepper.argTypes
-    }
-};
-
-export const ProgressStepperWithWarningStep = {
-    args: {
-        lastCompletedStep: 2,
-        isWarning: 3,
         steps: stepperData
     },
     argTypes: {

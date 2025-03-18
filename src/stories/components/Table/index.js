@@ -4,20 +4,18 @@ import React, { useMemo, useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { getComparator, stableSort } from './helpers';
-import MuiTable from '@mui/material/Table';
-import MuiTableBody from '@mui/material/TableBody';
-import MuiTableContainer from '@mui/material/TableContainer';
-import DSTableHead from './TableHead';
-import DSTableRow from './TableRow';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from './TableHead';
+import TableRow from './TableRows';
 
-const Table = ({
-    customClasses,
-    isExpandable,
-    isFlat,
+const QDSTable = ({
+    hasDarkHeader,
+    isData,
     isSortable,
     tableHeadData,
     tableCellData,
-    isTransparent,
     sortOrder,
     sortProperty
 }) => {
@@ -32,51 +30,53 @@ const Table = ({
 
     const visibleRows = useMemo(
         () => stableSort(tableCellData, getComparator(order, orderBy)).slice(),
-        [order, orderBy, tableCellData]
+        [tableCellData, order, orderBy]
     );
 
     return (
-        <MuiTableContainer className="ds-table__wrapper">
-            <MuiTable
-                className={classNames('ds-table', customClasses, {
-                    '--flat': isFlat,
-                    '--expandable': isExpandable,
-                    '--sortable': isSortable,
-                    '--transparent': isTransparent
-                })}
+        <TableContainer
+            className={`${isData ? 'ds-data-table__container' : 'ds-table'}`}
+        >
+            <Table
+                className={classNames(
+                    `${isData ? 'ds-data-table' : 'ds-table__table'}`,
+                    {
+                        '--sortable': isSortable && isData,
+                        '--dark-header': hasDarkHeader
+                    }
+                )}
                 aria-label="table"
             >
-                <DSTableHead
+                <TableHead
+                    key={tableHeadData.key}
                     order={order}
                     orderBy={orderBy}
                     onRequestSort={handleRequestSort}
+                    isData={isData}
+                    isSortable={isSortable}
                     tableHeadData={tableHeadData}
                     tableCellData={tableCellData}
                 />
-                <MuiTableBody>
-                    {visibleRows.map(tableCellData => (
-                        <DSTableRow
-                            key={tableCellData.id}
-                            expandable={isExpandable}
+                <TableBody>
+                    {visibleRows.map((tableCellData, index) => (
+                        <TableRow
+                            isData={isData}
+                            key={tableCellData.key || index}
                             tableCellData={tableCellData}
                         />
                     ))}
-                </MuiTableBody>
-            </MuiTable>
-        </MuiTableContainer>
+                </TableBody>
+            </Table>
+        </TableContainer>
     );
 };
 
-Table.propTypes = {
-    customClasses: PropTypes.string,
-    isExpandable: PropTypes.bool,
-    isFlat: PropTypes.bool,
+QDSTable.propTypes = {
+    hasDarkHeader: PropTypes.bool,
+    isData: PropTypes.bool,
     isSortable: PropTypes.bool,
     tableHeadData: PropTypes.array.isRequired,
-    tableCellData: PropTypes.array.isRequired,
-    isTransparent: PropTypes.bool,
-    sortOrder: PropTypes.oneOf(['asc', 'desc']),
-    sortProperty: PropTypes.string
+    tableCellData: PropTypes.array.isRequired
 };
 
-export default Table;
+export default QDSTable;

@@ -4,344 +4,395 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const Footer = ({
-    customClasses = [],
-    hideLogo,
-    hideNav,
-    noMargins,
-    noMaxWidth
-}) => {
+const QDSFooter = ({ customClasses = [], type }) => {
     const year = new Date().getFullYear();
 
     const menuToggle = e => {
-        e.target.classList.toggle('--opened');
+        const parent = e.target.closest('.--nav-category');
+        if (parent) {
+            parent.classList.toggle('--active');
+        }
     };
 
     return (
-        <>
-            <footer>
-                <div
-                    className={classNames('ds-footer ds-grid', customClasses, {
-                        '--max-width': !noMaxWidth,
-                        '--margins': !noMargins,
-                        '--light': hideNav
-                    })}
-                >
-                    <div className="ds-footer__wrapper">
-                        {!hideLogo && (
-                            <>
-                                <div className="ds-brand-wrapper --small">
+        <footer
+            className={classNames('ds-grid', customClasses, {
+                'ds-footer --cit': type === 'cit',
+                'ds-footer-hipaa': type === 'hipaa'
+            })}
+        >
+            {type === 'cit' && (
+                <>
+                    <div className="ds-col-12 ds-footer__content">
+                        <div className="ds-col-12 --top">
+                            <div className="--inner-content">
+                                <div className="--logo">
                                     <img
-                                        src="https://ds.cdn.questdiagnostics.com/assets/img/qd-brand--stacked--white.svg"
+                                        src="https://ds.cdn.questdiagnostics.com/assets/img/quest-logo.svg"
                                         alt="Quest Diagnostics"
                                     />
                                 </div>
-                            </>
-                        )}
 
-                        <div className="ds-footer__content">
-                            {!hideNav && (
-                                <>
-                                    <div className="ds-footer__company">
-                                        <div className="ds-footer__company-links">
-                                            <button
-                                                className="ds-footer__link-title"
-                                                onClick={e => {
-                                                    menuToggle(e);
-                                                }}
-                                            >
-                                                <span className="--plus"></span>
-                                                Our company
-                                            </button>
+                                <div className="--nav-container">
+                                    <div className="--nav-category">
+                                        <button
+                                            className="--title"
+                                            onClick={e => {
+                                                menuToggle(e);
+                                            }}
+                                        >
+                                            Shop
+                                        </button>
 
-                                            <ul>
-                                                <li>
-                                                    <a
-                                                        className="ds-link"
-                                                        href="https://www.questdiagnostics.com/our-company/about-us"
-                                                    >
-                                                        About us
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        className="ds-link"
-                                                        href="https://www.questdiagnostics.com/our-company/how-we-operate"
-                                                    >
-                                                        How we operate
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        className="ds-link"
-                                                        href="https://www.questdiagnostics.com/our-company/what-we-do"
-                                                    >
-                                                        What we do
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        className="ds-link"
-                                                        href="https://www.questdiagnostics.com/our-company/corporate-responsibility"
-                                                    >
-                                                        Corporate responsibility
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        className="ds-link"
-                                                        href="https://www.questdiagnostics.com/our-company/inclusion-diversity"
-                                                    >
-                                                        Inclusion and diversity
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        className="ds-link"
-                                                        href="https://www.questdiagnostics.com/our-company/actions-insights"
-                                                    >
-                                                        Actions and insights
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        className="ds-link"
-                                                        href="https://www.questdiagnostics.com/our-company/suppliers-partners"
-                                                    >
-                                                        Suppliers
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a
-                                                        className="ds-link"
-                                                        href="https://www.questhealth.com/?itm_campaign=QD-Bottom-Nav-ShopallHP"
-                                                    >
-                                                        Shop tests
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <div className="ds-footer__company-options">
-                                            <a
-                                                className="ds-button --inverse --small"
-                                                aria-label="Locations"
-                                                href="https://www.questdiagnostics.com/home/about/locations/"
-                                            >
-                                                <label>Locations</label>
-                                            </a>
-                                            <a
-                                                className="ds-button --inverse --small"
-                                                aria-label="Career"
-                                                href="https://careers.questdiagnostics.com/"
-                                            >
-                                                <label>Careers</label>
-                                            </a>
-                                            <a
-                                                className="ds-button --inverse --small"
-                                                aria-label="Investors"
-                                                href="https://ir.questdiagnostics.com/overview/default.aspx"
-                                            >
-                                                <label>Investors</label>
-                                            </a>
-                                            <a
-                                                className="ds-button --inverse --small"
-                                                aria-label="Specilaty labs"
-                                                href="https://www.questdiagnostics.com/our-company/specialty-labs"
-                                            >
-                                                <label>Specialty labs</label>
-                                            </a>
-                                            <a
-                                                className="ds-button --inverse --small"
-                                                aria-label="Newsroom"
-                                                href="https://newsroom.questdiagnostics.com/"
-                                            >
-                                                <label>Newsroom</label>
-                                            </a>
-
-                                            <div className="ds-footer__social">
-                                                <div className="ds-footer__social-title">
-                                                    Connect with us
-                                                </div>
-
-                                                <a
-                                                    className="ds-footer__social-link"
-                                                    href="https://www.questdiagnostics.com/social-media"
-                                                >
-                                                    <span
-                                                        className="ds-icon--facebook-logo-fill"
-                                                        aria-label="facebook"
-                                                    ></span>
+                                        <ul>
+                                            <li>
+                                                <a href="https://www.questhealth.com/shop">
+                                                    All Tests
                                                 </a>
-                                                <a
-                                                    className="ds-footer__social-link"
-                                                    href="https://www.questdiagnostics.com/social-media"
-                                                >
-                                                    <span
-                                                        className="ds-icon--twitter-logo-fill"
-                                                        aria-label="twitter"
-                                                    ></span>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.questhealth.com/shop/general-health">
+                                                    General Health
                                                 </a>
-                                                <a
-                                                    className="ds-footer__social-link"
-                                                    href="https://www.questdiagnostics.com/social-media"
-                                                >
-                                                    <span
-                                                        className="ds-icon--youtube-logo-fill"
-                                                        aria-label="youtube"
-                                                    ></span>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.questhealth.com/shop/womens-health">
+                                                    Women's Health
                                                 </a>
-                                                <a
-                                                    className="ds-footer__social-link"
-                                                    href="https://www.questdiagnostics.com/social-media"
-                                                >
-                                                    <span
-                                                        className="ds-icon--linkedin-logo-fill"
-                                                        aria-label="linkedin"
-                                                    ></span>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.questhealth.com/shop/mens-health">
+                                                    Men's Health
                                                 </a>
-                                                <a
-                                                    className="ds-footer__social-link"
-                                                    href="https://www.questdiagnostics.com/social-media"
-                                                >
-                                                    <span
-                                                        className="ds-icon--instagram-logo"
-                                                        aria-label="instagram"
-                                                    ></span>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.questhealth.com/shop/sexual-health">
+                                                    Sexual Health
                                                 </a>
-                                            </div>
-                                        </div>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.questhealth.com/shop/allergy">
+                                                    Allergy
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
-                                </>
-                            )}
 
-                            <div className="ds-footer__legal">
-                                <ul className="ds-col-12 ds-flex --row --wrap">
-                                    <li>
-                                        <a
-                                            className="ds-link"
-                                            href="https://www.questdiagnostics.com/site-map"
+                                    <div className="--nav-category">
+                                        <button
+                                            className="--title"
+                                            onClick={e => {
+                                                menuToggle(e);
+                                            }}
                                         >
-                                            Site map
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="ds-link"
-                                            href="https://www.questdiagnostics.com/our-company/privacy"
+                                            Support
+                                        </button>
+
+                                        <ul>
+                                            <li>
+                                                <a href="https://www.questhealth.com/account">
+                                                    Get Results
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.questhealth.com/find-location">
+                                                    Find a Location
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.questhealth.com/faqs.html">
+                                                    FAQs
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.questhealth.com/how-it-works.html">
+                                                    How It Works
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.questhealth.com/customer-support.html">
+                                                    Customer Support
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div className="--nav-category">
+                                        <button
+                                            className="--title"
+                                            onClick={e => {
+                                                menuToggle(e);
+                                            }}
                                         >
-                                            Privacy notices
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="ds-link"
-                                            href="https://www.questdiagnostics.com/our-company/terms-conditions"
-                                        >
-                                            Terms
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="ds-link"
-                                            href="https://www.questdiagnostics.com/contact-us"
-                                        >
-                                            Contact us
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="ds-link"
-                                            href="https://www.questdiagnostics.com/our-company/nondiscrimination"
-                                        >
-                                            Language assistance /
-                                            Non-discrimination
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="ds-link"
-                                            href="https://www.questdiagnostics.com/our-company/nondiscrimination"
-                                        >
-                                            Asistencia de idiomas / Aviso de no
-                                            discriminación
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="ds-link"
-                                            href="https://www.questdiagnostics.com/our-company/nondiscrimination"
-                                        >
-                                            語言協助 / 不歧視通知
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="ds-link"
-                                            href="https://www.questdiagnostics.com/our-company/privacy/privacy-shield"
-                                        >
-                                            Privacy shield
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="ds-link"
-                                            href="https://www.questdiagnostics.com/our-company/accessibility"
-                                        >
-                                            Accessibility
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="ds-link --icons"
-                                            href={null}
-                                        >
-                                            <img
-                                                src="https://ds.cdn.questdiagnostics.com/assets/img/your-privacy.svg"
-                                                alt="Your Privacy Choices"
-                                            />
-                                            <span>Your Privacy Choices</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                            About Quest
+                                        </button>
+
+                                        <ul>
+                                            <li>
+                                                <a href="https://www.questdiagnostics.com/">
+                                                    Quest Diagnostics
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div className="ds-footer__copyright">
-                                Quest<sup>&reg;</sup> is the brand name used for
-                                services offered by Quest Diagnostics
-                                Incorporated and its affiliated companies. Quest
-                                Diagnostics Incorporated and certain affiliates
-                                are CLIA certified laboratories that provide
-                                HIPAA covered services.  Other affiliates
-                                operated under the Quest
-                                <sup>&reg;</sup> brand, such as Quest Consumer
-                                Inc., do not provide HIPAA covered services.
-                                <br />
-                                <br />
-                                Quest, Quest Diagnostics, any associated logos,
-                                and all associated Quest Diagnostics registered
-                                or unregistered trademarks are the property of
-                                Quest Diagnostics. All third party marks —
-                                <sup>&reg;</sup> and &trade; — are the property
-                                of their respective owners. &copy; {year} Quest
-                                Diagnostics Incorporated. All rights reserved.
-                                Image content features models and is intended
-                                for illustrative purposes only.
+                            <div className="--social">
+                                <div>
+                                    <a href="https://www.facebook.com/questdiagnostics?sk=wall">
+                                        <img
+                                            src="https://ds.cdn.questdiagnostics.com/assets/ds-icons/social/ds-icon--footer-white--facebook-logo.svg"
+                                            alt="Facebook"
+                                        />
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="https://www.instagram.com/testwithquest/">
+                                        <img
+                                            src="https://ds.cdn.questdiagnostics.com/assets/ds-icons/social/ds-icon--footer-white--instagram-logo.svg"
+                                            alt="Instagram"
+                                        />
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="https://www.linkedin.com/company/quest-diagnostics">
+                                        <img
+                                            src="https://ds.cdn.questdiagnostics.com/assets/ds-icons/social/ds-icon--footer-white--linkedin-logo.svg"
+                                            alt="LinkedIn"
+                                        />
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="https://twitter.com/QuestDX">
+                                        <img
+                                            src="https://ds.cdn.questdiagnostics.com/assets/ds-icons/social/ds-icon--footer-white--twitterx-logo.svg"
+                                            alt="Twitter"
+                                        />
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="https://www.youtube.com/channel/UCiylgcbQtZMTdQbRw73yr3w">
+                                        <img
+                                            src="https://ds.cdn.questdiagnostics.com/assets/ds-icons/social/ds-icon--footer-white--youtube-logo.svg"
+                                            alt="YouTube"
+                                        />
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </footer>
-        </>
+                    <div className="ds-col-12 ds-footer__content">
+                        <div className="ds-col-12 --bottom">
+                            <div className="ds-col-12 ds-flex --legal-links">
+                                <a href="https://www.questhealth.com/privacy-notice.html">
+                                    Privacy Notice
+                                </a>
+                                <a href="https://www.questhealth.com/terms-of-use.html">
+                                    Terms of Use
+                                </a>
+                                <a href="https://www.questdiagnostics.com/home/nondiscrimination">
+                                    Language Assistance / Non-Discrimination
+                                </a>
+                                <a href="https://www.questdiagnostics.com/our-company/accessibility">
+                                    Accessibility Policy
+                                </a>
+                                {/* <!--Should open a modal--> */}
+                                <a className="ds-link --icons" href={null}>
+                                    <img
+                                        src="https://ds.cdn.questdiagnostics.com/assets/img/your-privacy.svg"
+                                        alt="Your Privacy Choices"
+                                    />
+                                    <span>Your Privacy Choices</span>
+                                </a>
+                                <a href="https://www.questhealth.com/faqs.html">
+                                    FAQs
+                                </a>
+                            </div>
+
+                            <div className="ds-col-12 ds-flex --column --legal-text">
+                                <span>
+                                    Quest&reg; is the brand name used for
+                                    services offered by Quest Diagnostics
+                                    Incorporated and its affiliated companies.
+                                    Quest Diagnostics Incorporated and certain
+                                    affiliates are CLIA certified laboratories
+                                    that provide HIPAA covered services. Other
+                                    affiliates operated under the Quest&reg;
+                                    brand, such as Quest Consumer Inc., do not
+                                    provide HIPAA covered services.
+                                </span>
+                                <span>
+                                    Quest, Quest Diagnostics, the associated
+                                    logo, Nichols Institute and all associated
+                                    Quest Diagnostics marks are the registered
+                                    trademarks of Quest Diagnostics. All third
+                                    party marks - &reg; and &trade; - are the
+                                    property of their respective owners. &copy;
+                                    2000-{year} Quest Diagnostics Incorporated.
+                                    All rights reserved.
+                                </span>
+                                <span>
+                                    <em>
+                                        Image content features models and is
+                                        intended for illustrative purposes only.
+                                    </em>
+                                </span>
+                            </div>
+                            <div className="ds-col-12 --copyright">
+                                &copy; {year} Quest Diagnostics Incorporated.
+                            </div>
+                            <div className="ds-col-12 ds-mt-8">
+                                <span>
+                                    Quest Consumer Inc., 500 Plaza Drive,
+                                    Secaucus, New Jersey 07094
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )}
+
+            {type === 'hipaa' && (
+                <>
+                    <div className="ds-col-12 ds-footer__content">
+                        <div className="ds-col-12 --top">
+                            <div className="--inner-content">
+                                <div className="--logo">
+                                    <img
+                                        src="https://ds.cdn.questdiagnostics.com/assets/img/quest-logo--white.svg"
+                                        alt="Quest Diagnostics"
+                                    />
+                                </div>
+
+                                <div className="--social">
+                                    <div>
+                                        <a href="https://www.facebook.com/questdiagnostics?sk=wall">
+                                            <img
+                                                src="https://ds.cdn.questdiagnostics.com/assets/ds-icons/social/ds-icon--footer-green--facebook-logo.svg"
+                                                alt="Facebook"
+                                            />
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="https://www.instagram.com/testwithquest/">
+                                            <img
+                                                src="https://ds.cdn.questdiagnostics.com/assets/ds-icons/social/ds-icon--footer-green--instagram-logo.svg"
+                                                alt="Instagram"
+                                            />
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="https://www.linkedin.com/company/quest-diagnostics">
+                                            <img
+                                                src="https://ds.cdn.questdiagnostics.com/assets/ds-icons/social/ds-icon--footer-green--linkedin-logo.svg"
+                                                alt="LinkedIn"
+                                            />
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="https://twitter.com/QuestDX">
+                                            <img
+                                                src="https://ds.cdn.questdiagnostics.com/assets/ds-icons/social/ds-icon--footer-green--twitterx-logo.svg"
+                                                alt="Twitter"
+                                            />
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="https://www.youtube.com/channel/UCiylgcbQtZMTdQbRw73yr3w">
+                                            <img
+                                                src="https://ds.cdn.questdiagnostics.com/assets/ds-icons/social/ds-icon--footer-green--youtube-logo.svg"
+                                                alt="YouTube"
+                                            />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="ds-col-12 ds-footer__content">
+                        <div className="ds-col-12 --bottom">
+                            <div className="ds-col-12 ds-flex --legal-links">
+                                <a href="https://www.questdiagnostics.com/our-company/copyright">
+                                    Copyright
+                                </a>
+                                <a href="https://www.questdiagnostics.com/our-company/privacy/privacy-shield">
+                                    Privacy Shield
+                                </a>
+
+                                <a href="https://www.questdiagnostics.com/our-company/privacy">
+                                    Privacy Notices
+                                </a>
+
+                                {/* <!--Should open a modal--> */}
+                                <a className="ds-link --icons" href={null}>
+                                    <img
+                                        src="https://ds.cdn.questdiagnostics.com/assets/img/your-privacy.svg"
+                                        aria-label="Your Privacy Choices"
+                                        alt="Your Privacy Choices"
+                                    />
+                                    <span>Your Privacy Choices</span>
+                                </a>
+
+                                <a href="https://www.questdiagnostics.com/our-company/terms-conditions">
+                                    Terms
+                                </a>
+
+                                <a href="https://www.questdiagnostics.com/our-company/nondiscrimination">
+                                    Language Assistance / Non-Discrimination
+                                    Notice
+                                </a>
+
+                                <a href="https://www.questdiagnostics.com/our-company/nondiscrimination">
+                                    Asistencia de Idiomas / Aviso de no
+                                    Discriminación
+                                </a>
+
+                                <a href="https://www.questdiagnostics.com/our-company/nondiscrimination">
+                                    語言協助 / 不歧視通知
+                                </a>
+                            </div>
+                            <div className="ds-col-12 --legal-text">
+                                <span>
+                                    Quest&reg; is the brand name used for
+                                    services offered by Quest Diagnostics
+                                    Incorporated and its affiliated companies.
+                                    Quest Diagnostics Incorporated and certain
+                                    affiliates are CLIA certified laboratories
+                                    that provide HIPAA covered services. Other
+                                    affiliates operated under the Quest&reg;
+                                    brand, such as Quest Consumer Inc., do not
+                                    provide HIPAA covered services.
+                                </span>
+                                <span>
+                                    Quest, Quest Diagnostics, the associated
+                                    logo, Nichols Institute and all associated
+                                    Quest Diagnostics marks are the registered
+                                    trademarks of Quest Diagnostics. All third
+                                    party marks — &reg; and &trade; — are the
+                                    property of their respective owners. &copy;{' '}
+                                    {year} Quest Diagnostics Incorporated. All
+                                    rights reserved.
+                                </span>
+                                <span>
+                                    Testing purchased by you through Quest's
+                                    online store is ordered by a licensed
+                                    healthcare professional authorized to order
+                                    laboratory testing in accordance with state
+                                    laws.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )}
+        </footer>
     );
 };
 
-Footer.propTypes = {
+QDSFooter.propTypes = {
     customClasses: PropTypes.string,
-    logo: PropTypes.bool,
-    hideNav: PropTypes.bool,
-    noMargins: PropTypes.bool,
-    noMaxWidth: PropTypes.bool
+    type: PropTypes.oneOf(['hipaa', 'cit']).isRequired
 };
 
-export default Footer;
+export default QDSFooter;

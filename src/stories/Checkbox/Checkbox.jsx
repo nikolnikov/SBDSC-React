@@ -1,9 +1,9 @@
 import React from 'react';
-import DSCheckbox from '../components/Checkbox';
+import DSCheckbox from '../components/Checkbox'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const Checkbox = ({ 
+export const QDSCheckbox = ({ 
     inputId,
     label,
     name,
@@ -12,32 +12,34 @@ export const Checkbox = ({
     isDisabled = false,
     isIndeterminate = false,
     onChange,
+    isRequired = false,
     value
 }) => {
-    
     return (
         <DSCheckbox
+            customClasses={classNames(customClasses)}
             inputId={inputId}
             label={label}
             name={name}
             isChecked={isChecked}
-            customClasses={classNames(customClasses)}
             isDisabled={isDisabled}
             isIndeterminate={isIndeterminate}
             onChange={onChange}
+            isRequired={isRequired}
             value={value}
         />
     );
 };
 
-Checkbox.propTypes = {
-    inputId: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+QDSCheckbox.propTypes = {
+    customClasses: PropTypes.array,
+    inputId: PropTypes.string,
+    label: PropTypes.string,
+    name: PropTypes.string,
     isChecked: PropTypes.bool,
-    customClasses: PropTypes.string,
     isDisabled: PropTypes.bool,
     isIndeterminate: PropTypes.bool,
     onChange: PropTypes.func,
+    isRequired: PropTypes.bool,
     value: PropTypes.string
 };

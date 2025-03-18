@@ -5,14 +5,13 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import ProgressStep from './PropgressStep';
 
-const ProgressStepper = ({
-    customClasses = [],
-    isCancelled,
-    isError,
-    isWarning,
+const QDSProgressStepper = ({
+    customClasses,
     hideLabels,
-    lastCompletedStep = -1,
+    isError,
+    isSentBack,
     isVertical,
+    lastCompletedStep = -1,
     showNumbers,
     steps
 }) => {
@@ -40,26 +39,24 @@ const ProgressStepper = ({
                     subLabel={step.subTitle}
                     isCompleted={idx < currentStep}
                     isCurrent={idx === currentStep}
-                    isCancelled={idx === isCancelled}
                     isError={idx === isError}
-                    isWarning={idx === isWarning}
                     isVertical={isVertical}
+                    isSentBack={idx === isSentBack}
                 />
             ))}
         </div>
     );
 };
 
-ProgressStepper.propTypes = {
+QDSProgressStepper.propTypes = {
     customClasses: PropTypes.string,
     steps: PropTypes.array,
     hideLabels: PropTypes.bool,
-    isCancelled: PropTypes.number,
     isError: PropTypes.number,
-    isWarning: PropTypes.number,
-    lastCompletedStep: PropTypes.number,
+    isSentBack: PropTypes.number,
     isVertical: PropTypes.bool,
+    lastCompletedStep: PropTypes.number,
     showNumbers: PropTypes.bool
 };
 
-export default ProgressStepper;
+export default QDSProgressStepper;

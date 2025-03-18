@@ -1,21 +1,24 @@
 import React from 'react';
-import DSProgressBar from '../components/ProgressBar';
+import DSProgressBar from '../components/ProgressBar'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const ProgressBar = ({ 
-    customClasses = [],
-    fillPercentage
+export const QDSProgressBar = ({
+    customClasses,
+    completed,
+    showPercentage = true
 }) => {
     return (
         <DSProgressBar
             customClasses={classNames(customClasses)}
-            fillPercentage={fillPercentage}
+            completed={completed}
+            showPercentage={showPercentage}
         />
     );
 };
 
-ProgressBar.propTypes = {
-    customClasses: PropTypes.array,
-    fillPercentage: PropTypes.number
+QDSProgressBar.propTypes = {
+    customClasses: PropTypes.string,
+    completed: PropTypes.number,
+    showPercentage: PropTypes.bool
 };

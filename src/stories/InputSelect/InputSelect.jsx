@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import DSInputSelect from '../components/InputSelect';
+import DSInputSelect from '../components/InputSelect'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const InputSelect = ({
-    customClasses = [],
+export const QDSInputSelect = ({ 
+    customClasses,
     errorMessage,
     hasError = false,
     hintMessage,
@@ -19,15 +19,11 @@ export const InputSelect = ({
     selectedValue,
     tooltipMessage
 }) => {
-    const [value, setValue] = useState(selectedValue || '');
+    const [value, setValue] = useState('');
 
     const updateValue = e => {
         setValue(e.target.value);
-        if (onChange) {
-            onChange(e);
-        }
     };
-
     return (
         <DSInputSelect
             customClasses={classNames(customClasses)}
@@ -36,9 +32,9 @@ export const InputSelect = ({
             hintMessage={hintMessage}
             inputId={inputId}
             isDisabled={isDisabled}
-            menuClass={menuClass}
             isRequired={isRequired}
             label={label}
+            menuClass={menuClass}
             onChange={updateValue}
             options={options}
             placeholder={placeholder}
@@ -48,7 +44,7 @@ export const InputSelect = ({
     );
 };
 
-InputSelect.propTypes = {
+QDSInputSelect.propTypes = {
     customClasses: PropTypes.string,
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,

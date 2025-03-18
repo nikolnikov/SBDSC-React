@@ -1,8 +1,8 @@
-import { ProgressBar } from './ProgressBar';
+import { QDSProgressBar } from './ProgressBar';
 
 export default {
     title: 'Components/Progress bar',
-    component: ProgressBar,
+    component: QDSProgressBar,
     parameters: {
         layout: 'centered',
         actions: {
@@ -15,9 +15,10 @@ export default {
     tags: ['autodocs', '!dev']
 };
 
-export const DefaultProgressBar = {
+export const BasicProgressBar = {
     args: {
-        fillPercentage: 50
+        completed: 50,
+        showPercentage: true
     },
     argTypes: {
         customClasses: { table: { disable: true } }

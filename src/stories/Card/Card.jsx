@@ -1,24 +1,24 @@
 import React from 'react';
-import DSCard from '../components/Card';
+import DSCard from '../components/Card'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const Card = ({ 
-    children,
-    customClasses = [],
-    title
+export const QDSCard = ({ 
+    children, customClasses, isInverse, type
 }) => {
     return (
         <DSCard
-            customClasses={classNames(customClasses)}
             children={children}
-            title={title}
+            customClasses={classNames(customClasses)}
+            isInverse={isInverse}
+            type={type}
         />
     );
 };
 
-Card.propTypes = {
-    customClasses: PropTypes.string,
+QDSCard.propTypes = {
     children: PropTypes.node,
-    title: PropTypes.string
+    customClasses: PropTypes.array,
+    isInverse: PropTypes.bool,
+    type: PropTypes.oneOf(['media', 'product'])
 };

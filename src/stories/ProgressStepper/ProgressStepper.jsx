@@ -1,41 +1,38 @@
 import React from 'react';
-import DSProgressStepper from '../components/ProgressStepper';
+import DSProgressStepper from '../components/ProgressStepper'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const ProgressStepper = ({ 
-    customClasses = [],
-    isCancelled,
-    isError,
-    isWarning,
+export const QDSProgressStepper = ({
+    customClasses,
     hideLabels = false,
-    lastCompletedStep,
+    isError,
+    isSentBack,
     isVertical = false,
-    showNumbers = true,
+    lastCompletedStep,
+    showNumbers,
     steps
 }) => {
     return (
         <DSProgressStepper
             customClasses={classNames(customClasses)}
-            isCancelled={isCancelled}
-            isError={isError}
-            isWarning={isWarning}
             hideLabels={hideLabels}
-            lastCompletedStep={lastCompletedStep}
+            isError={isError}
+            isSentBack={isSentBack}
             isVertical={isVertical}
+            lastCompletedStep={lastCompletedStep}
             showNumbers={showNumbers}
             steps={steps}
         />
     );
 };
 
-ProgressStepper.propTypes = {
+QDSProgressStepper.propTypes = {
     customClasses: PropTypes.string,
     steps: PropTypes.array,
     hideLabels: PropTypes.bool,
-    isCancelled: PropTypes.number,
     isError: PropTypes.number,
-    isWarning: PropTypes.number,
+    isSentBack: PropTypes.number,
     isVertical: PropTypes.bool,
     lastCompletedStep: PropTypes.number,
     showNumbers: PropTypes.bool

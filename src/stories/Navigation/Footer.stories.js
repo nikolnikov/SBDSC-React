@@ -1,8 +1,8 @@
-import { Footer } from './Footer';
+import { QDSFooter } from './Footer';
 
 export default {
     title: 'Components/Navigation/Footer',
-    component: Footer,
+    component: QDSFooter,
     parameters: {
         layout: 'centered',
         actions: {
@@ -15,45 +15,20 @@ export default {
     tags: ['autodocs', '!dev']
 };
 
-export const CorportateFooter = {
-    args: {},
+export const CITFooter = {
+    args: {
+        type: 'cit'
+    },
     argTypes: {
-        customClasses: { table: { disable: true } },
-        margins: { table: { disable: true } },
-        maxWidth: { table: { disable: true } }
+        customClasses: { table: { disable: true } }
     }
 };
 
-export const CorportateFooterWithNoLogo = {
+export const HIPAAFooter = {
     args: {
-        hideLogo: true
+        type: 'hipaa'
     },
     argTypes: {
-        customClasses: { table: { disable: true } },
-        margins: { table: { disable: true } },
-        maxWidth: { table: { disable: true } }
-    }
-};
-
-export const LightCorportateFooter = {
-    args: {
-        hideNav: true
-    },
-    argTypes: {
-        customClasses: { table: { disable: true } },
-        margins: { table: { disable: true } },
-        maxWidth: { table: { disable: true } }
-    }
-};
-
-export const LightCorportateFooterWithNoLogo = {
-    args: {
-        hideNav: true,
-        hideLogo: true
-    },
-    argTypes: {
-        customClasses: { table: { disable: true } },
-        margins: { table: { disable: true } },
-        maxWidth: { table: { disable: true } }
+        ...CITFooter.argTypes
     }
 };

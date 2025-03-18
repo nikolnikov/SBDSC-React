@@ -1,25 +1,24 @@
 import React from 'react';
-import DSInput from '../components/Input';
+import DSInput from '../components/Input'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const Input = ({
-    customClasses = [],
+export const QDSInput = ({ 
+    customClasses,
     errorMessage,
     hasError = false,
     hintMessage,
     inputId,
     isDisabled = false,
-    isLoading = false,
     isRequired = false,
     label,
-    iconLeft,
-    iconRight,
+    leftIcon,
     name,
-    onChange = () => {},
+    onChange,
     placeholder,
+    rightIcon,
     tooltipMessage,
-    type
+    type = 'text'
 }) => {
     return (
         <DSInput
@@ -29,35 +28,33 @@ export const Input = ({
             hintMessage={hintMessage}
             inputId={inputId}
             isDisabled={isDisabled}
-            isLoading={isLoading}
             isRequired={isRequired}
             label={label}
-            iconLeft={iconLeft}
-            iconRight={iconRight}
+            leftIcon={leftIcon}
             name={name}
             onChange={onChange}
             placeholder={placeholder}
+            rightIcon={rightIcon}
             tooltipMessage={tooltipMessage}
             type={type}
         />
     );
 };
 
-Input.propTypes = {
+QDSInput.propTypes = {
     customClasses: PropTypes.string,
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,
     hintMessage: PropTypes.string,
     inputId: PropTypes.string.isRequired,
     isDisabled: PropTypes.bool,
-    isLoading: PropTypes.bool,
     isRequired: PropTypes.bool,
-    label: PropTypes.string.isRequired,
-    iconLeft: PropTypes.string,
-    iconRight: PropTypes.string,
+    label: PropTypes.string,
+    leftIcon: PropTypes.string,
     name: PropTypes.string,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
+    rightIcon: PropTypes.string,
     tooltipMessage: PropTypes.string,
     type: PropTypes.string
 };

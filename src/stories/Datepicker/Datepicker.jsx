@@ -3,8 +3,8 @@ import DSDatePicker from '../components/DatePicker'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const Datepicker = ({ 
-    customClasses,
+export const QDSDatepicker = ({ 
+    customClasses = [],
     errorMessage,
     hasError = false,
     hintMessage,
@@ -15,7 +15,6 @@ export const Datepicker = ({
     isRequired = false,
     label,
     offset,
-    placeholder,
     showOnTop = false
 }) => {
     return (
@@ -31,14 +30,13 @@ export const Datepicker = ({
             isRequired={isRequired}
             label={label}
             offset={offset}
-            placeholder={placeholder}
             showOnTop={showOnTop}
         />
     );
 };
 
-Datepicker.propTypes = {
-    customClasses: PropTypes.string,
+QDSDatepicker.propTypes = {
+    customClasses: PropTypes.array,
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,
     hintMessage: PropTypes.string,
@@ -49,6 +47,5 @@ Datepicker.propTypes = {
     isRequired: PropTypes.bool,
     label: PropTypes.string,
     offset: PropTypes.number,
-    placeholder: PropTypes.string,
     showOnTop: PropTypes.bool
 };
