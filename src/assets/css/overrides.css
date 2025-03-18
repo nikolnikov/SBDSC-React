@@ -73,7 +73,8 @@ h2#stories,
     background: #034c1f;
 }
 
-.docs-story .css-1qq744x:has(.ds-banner) {
+.docs-story .css-1qq744x:has(.ds-banner),
+.docs-story .css-1qq744x:has(.ds-header) {
     background: #fff !important;
 }
 
