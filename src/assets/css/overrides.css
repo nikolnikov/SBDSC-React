@@ -73,6 +73,10 @@ h2#stories,
     background: #034c1f;
 }
 
+.docs-story .css-1qq744x:has(.ds-banner) {
+    background: #fff !important;
+}
+
 .sb-story.sb-unstyled > div {
     display: flex;
     justify-content: center;
