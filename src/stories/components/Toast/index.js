@@ -12,6 +12,9 @@ const QDSToast = ({
     noIcon,
     onClose,
     opened,
+    positionY = 'top',
+    positionYOffset,
+    positionYOffsetMobile,
     textLinkLabel,
     type
 }) => {
@@ -40,7 +43,31 @@ const QDSToast = ({
             open={opened}
             autoHideDuration={duration}
             onClose={onClose}
-            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            anchorOrigin={{
+                vertical: positionY ? `${positionY}` : 'top',
+                horizontal: 'center'
+            }}
+            sx={{
+                ...(positionY === 'top'
+                    ? {
+                          top: {
+                              xs: positionYOffsetMobile
+                                  ? `${positionYOffsetMobile}px`
+                                  : 40,
+                              md: positionYOffset ? `${positionYOffset}px` : 64
+                          }
+                      }
+                    : {
+                          bottom: {
+                              xs: positionYOffsetMobile
+                                  ? `${positionYOffsetMobile}px`
+                                  : 40,
+                              md: positionYOffset ? `${positionYOffset}px` : 64
+                          }
+                      }),
+                left: '50%',
+                transform: 'translateX(-50%)'
+            }}
         >
             <SnackbarContent
                 action={action}
@@ -57,6 +84,9 @@ QDSToast.propTypes = {
     noIcon: PropTypes.bool,
     onClose: PropTypes.func,
     opened: PropTypes.bool.isRequired,
+    positionY: PropTypes.oneOf(['top', 'bottom']),
+    positionYOffset: PropTypes.number,
+    positionYOffsetMobile: PropTypes.number,
     textLinkLabel: PropTypes.string,
     type: PropTypes.oneOf(['success', 'error', 'alert', 'informative'])
 };

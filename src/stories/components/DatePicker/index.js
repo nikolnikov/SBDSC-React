@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import DatePickerInput from './DatePickerInput';
+import DatepickerInput from './DatepickerInput';
 import Caption from './Caption';
 import Overlay from '../Overlay';
 
@@ -188,7 +188,7 @@ const QDSDatepicker = ({
                     }}
                 />
 
-                <DatePickerInput
+                <DatepickerInput
                     customClasses={customClasses}
                     errorMessage={errorMessage}
                     hasError={hasError}
@@ -210,7 +210,7 @@ const QDSDatepicker = ({
                               selectedDay: selectedDay
                           })}
                     showCalendar={showCalendar}
-                ></DatePickerInput>
+                ></DatepickerInput>
             </div>
 
             {showCalendar && (

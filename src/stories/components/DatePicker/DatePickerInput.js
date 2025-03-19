@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import IconButton from '../Button/IconButton.index';
 
-const DatePickerInput = ({
+const DatepickerInput = ({
     customClasses,
     handleInputDateChange,
     errorMessage,
@@ -104,7 +104,7 @@ const DatePickerInput = ({
     );
 };
 
-DatePickerInput.propTypes = {
+DatepickerInput.propTypes = {
     customClasses: PropTypes.string,
     handleInputDateChange: PropTypes.func,
     errorMessage: PropTypes.string,
@@ -122,4 +122,4 @@ DatePickerInput.propTypes = {
     showCalendar: PropTypes.bool
 };
 
-export default DatePickerInput;
+export default DatepickerInput;
