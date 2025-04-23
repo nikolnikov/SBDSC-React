@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 
 const QDSToast = ({
     duration,
+    hideDismiss,
     message,
     noIcon,
     onClose,
@@ -20,13 +21,13 @@ const QDSToast = ({
 }) => {
     const action = (
         <>
-            {textLinkLabel && (
+            {textLinkLabel && !hideDismiss && (
                 <a href={null} className="ds-link" onClick={onClose}>
                     {textLinkLabel}
                 </a>
             )}
 
-            {!duration && !textLinkLabel && (
+            {!textLinkLabel && !hideDismiss && (
                 <QDSIconButton icon="close" clickHandler={onClose} />
             )}
         </>
@@ -80,10 +81,11 @@ const QDSToast = ({
 
 QDSToast.propTypes = {
     duration: PropTypes.number,
+    hideDismiss: PropTypes.bool,
     message: PropTypes.string.isRequired,
     noIcon: PropTypes.bool,
     onClose: PropTypes.func,
-    opened: PropTypes.bool.isRequired,
+    opened: PropTypes.bool,
     positionY: PropTypes.oneOf(['top', 'bottom']),
     positionYOffset: PropTypes.number,
     positionYOffsetMobile: PropTypes.number,

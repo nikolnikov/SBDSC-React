@@ -29,7 +29,8 @@ export const BasicCard = {
                 nisl quis, ultricies nisl. Nulla facilisi. Sed sit amet eros
                 ullamcorper, aliquet nisl quis, ultricies nisl.
             </p>
-        )
+        ),
+        title: 'Card title'
     },
     argTypes: {
         customClasses: { table: { disable: true } }

@@ -21,7 +21,8 @@ const Input = ({
     placeholder,
     rightIcon,
     tooltipMessage,
-    type = 'text'
+    type = 'text',
+    value
 }) => {
     return (
         <div
@@ -53,7 +54,8 @@ const Input = ({
                     name={name}
                     placeholder={placeholder}
                     type={type}
-                    onChange={value => onChange(value)}
+                    onChange={onChange}
+                    value={value}
                 />
                 {rightIcon && (
                     <QDSIcon name={rightIcon} customClasses="--right" />
@@ -89,7 +91,8 @@ Input.propTypes = {
     placeholder: PropTypes.string,
     rightIcon: PropTypes.string,
     tooltipMessage: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    value: PropTypes.string
 };
 
 export default Input;

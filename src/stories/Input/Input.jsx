@@ -18,7 +18,8 @@ export const QDSInput = ({
     placeholder,
     rightIcon,
     tooltipMessage,
-    type = 'text'
+    type = 'text',
+    value
 }) => {
     return (
         <DSInput
@@ -37,6 +38,7 @@ export const QDSInput = ({
             rightIcon={rightIcon}
             tooltipMessage={tooltipMessage}
             type={type}
+            value={value}
         />
     );
 };
@@ -56,5 +58,6 @@ QDSInput.propTypes = {
     placeholder: PropTypes.string,
     rightIcon: PropTypes.string,
     tooltipMessage: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    value: PropTypes.string
 };

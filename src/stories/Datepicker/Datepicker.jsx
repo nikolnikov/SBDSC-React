@@ -1,10 +1,10 @@
 import React from 'react';
-import DSDatepicker from '../components/Datepicker'
+import DSDatePicker from '../components/Datepicker'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 export const QDSDatepicker = ({ 
-    customClasses = [],
+    customClasses,
     errorMessage,
     hasError = false,
     hintMessage,
@@ -13,12 +13,16 @@ export const QDSDatepicker = ({
     isDisabled = false,
     isRange = false,
     isRequired = false,
+    isSimple = false,
     label,
     offset,
+    placeholder,
+    range,
+    selectedDay,
     showOnTop = false
 }) => {
     return (
-        <DSDatepicker
+        <DSDatePicker
             customClasses={classNames(customClasses)}
             errorMessage={errorMessage}
             hasError={hasError}
@@ -28,15 +32,19 @@ export const QDSDatepicker = ({
             isDisabled={isDisabled}
             isRange={isRange}
             isRequired={isRequired}
+            isSimple={isSimple}
             label={label}
             offset={offset}
+            placeholder={placeholder}
+            range={range}
+            selectedDay={selectedDay}
             showOnTop={showOnTop}
         />
     );
 };
 
 QDSDatepicker.propTypes = {
-    customClasses: PropTypes.array,
+    customClasses: PropTypes.string,
     errorMessage: PropTypes.string,
     hasError: PropTypes.bool,
     hintMessage: PropTypes.string,
@@ -45,7 +53,14 @@ QDSDatepicker.propTypes = {
     isDisabled: PropTypes.bool,
     isRange: PropTypes.bool,
     isRequired: PropTypes.bool,
+    isSimple: PropTypes.bool,
     label: PropTypes.string,
     offset: PropTypes.number,
+    placeholder: PropTypes.string,
+    range: PropTypes.shape({
+        from: PropTypes.string,
+        to: PropTypes.string
+    }),
+    selectedDay: PropTypes.string,
     showOnTop: PropTypes.bool
 };

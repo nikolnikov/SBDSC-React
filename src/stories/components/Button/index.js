@@ -45,12 +45,9 @@ const QDSButton = ({
                         )}
                         onClick={dlBtnClicked}
                     >
-                        <QDSIcon
-                            name="download-simple"
-                            customClasses="--left"
-                        />
+                        <QDSIcon name="download-simple" />
                         <div
-                            className="ds-icon--loading --left"
+                            className="ds-icon--loading"
                             aria-label="loading"
                             role="progressbar"
                         >
@@ -91,11 +88,9 @@ const QDSButton = ({
                     aria-label={label}
                     onClick={clickHandler}
                 >
-                    {icon && <QDSIcon name={icon} customClasses="--left" />}
+                    {icon && <QDSIcon name={icon} />}
                     <span>{label}</span>
-                    {iconRight && (
-                        <QDSIcon name={iconRight} customClasses="--right" />
-                    )}
+                    {iconRight && <QDSIcon name={iconRight} />}
                 </button>
             )}
         </>

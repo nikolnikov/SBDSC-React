@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -8,14 +8,24 @@ const QDSCheckbox = ({
     inputId,
     label,
     name,
-    isChecked,
+    isChecked: initialChecked,
     customClasses = [],
     isDisabled,
     isIndeterminate,
-    onChange,
     isRequired,
+    onChange,
     value
 }) => {
+    const [isChecked, setIsChecked] = useState(!!initialChecked);
+
+    const handleChange = event => {
+        const newChecked = event.target.checked;
+        setIsChecked(newChecked);
+        if (onChange) {
+            onChange(newChecked);
+        }
+    };
+
     return (
         <label
             className={classNames('ds-input__checkbox', customClasses, {
@@ -31,9 +41,9 @@ const QDSCheckbox = ({
                 id={inputId}
                 name={name}
                 type="checkbox"
-                onChange={value => onChange(value)}
+                onChange={handleChange}
                 value={value}
-                {...(isChecked && { checked: true })}
+                checked={isChecked}
             ></input>
             <span></span>
             {label}
@@ -49,8 +59,8 @@ QDSCheckbox.propTypes = {
     customClasses: PropTypes.string,
     isDisabled: PropTypes.bool,
     isIndeterminate: PropTypes.bool,
-    onChange: PropTypes.func,
     isRequired: PropTypes.bool,
+    onChange: PropTypes.func,
     value: PropTypes.string
 };
 

@@ -28,7 +28,7 @@ const QDSIcon = ({ color, customClasses, name, size, type }) => {
                 className={customClasses}
                 src={imgSrc}
                 alt={name}
-                style={{ width: size }}
+                style={{ width: size, height: 'auto' }}
             />
         );
     }

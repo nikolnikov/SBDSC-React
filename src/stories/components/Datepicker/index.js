@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 import classNames from 'classnames';
@@ -19,18 +19,35 @@ const QDSDatepicker = ({
     isDisabled,
     isRange,
     isRequired,
+    isSimple,
     label,
+    placeholder,
     offset,
+    range: initialRange,
+    selectedDay: initialSelectedDay,
     showOnTop
 }) => {
     const pastMonth = new Date();
 
+    // Initialize state with passed-in props or defaults
     const [showCalendar, setShowCalendar] = useState(false);
-    const [range, setRange] = useState();
-    const [selectedDay, setSelectedDay] = useState('');
+    const [range, setRange] = useState(
+        initialRange || { from: null, to: null }
+    );
+    const [selectedDay, setSelectedDay] = useState(
+        initialSelectedDay
+            ? format(new Date(initialSelectedDay), 'MM/dd/yyyy')
+            : ''
+    );
     const [calendarPositionY, setCalendarPositionY] = useState(0);
-    const [fromDate, setFromDate] = useState('');
-    const [toDate, setToDate] = useState('');
+    const [fromDate, setFromDate] = useState(
+        initialRange?.from
+            ? format(new Date(initialRange.from), 'MM/dd/yyyy')
+            : ''
+    );
+    const [toDate, setToDate] = useState(
+        initialRange?.to ? format(new Date(initialRange.to), 'MM/dd/yyyy') : ''
+    );
 
     const inputRef = useRef(null);
 
@@ -39,7 +56,7 @@ const QDSDatepicker = ({
     const DAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
     const toggleCalendar = () => {
-        const yPositionOffset = showOnTop ? offset || -322 : offset || 73;
+        const yPositionOffset = showOnTop ? offset || -335 : offset || 63;
 
         setCalendarPositionY(
             () => (inputRef.current.style.top = 0 + yPositionOffset)
@@ -56,7 +73,7 @@ const QDSDatepicker = ({
         } else if (name === 'to') {
             setToDate(value);
         } else if (name === 'Selected day') {
-            setSelectedDay(e.target.value);
+            setSelectedDay(value);
         } else {
             return;
         }
@@ -81,8 +98,6 @@ const QDSDatepicker = ({
     };
 
     const dayClickHandler = (selectedFromDate, selectedToDate) => {
-        // set from date if it hasn't been selected
-
         if (!fromDate) {
             setRange(prevState => ({
                 ...prevState,
@@ -93,9 +108,7 @@ const QDSDatepicker = ({
             return setFromDate(format(selectedFromDate, 'MM/dd/yyyy'));
         }
 
-        // set to date if it hasn't been selected
         if (!toDate) {
-            // check if selected date is before the from date
             if (selectedFromDate < new Date(fromDate)) {
                 setRange(prevState => ({
                     ...prevState,
@@ -112,9 +125,7 @@ const QDSDatepicker = ({
             return toggleCalendar();
         }
 
-        // reset and select new date if from and to dates have been selected
         if (fromDate && toDate) {
-            // determine which date was selected
             const fromDateChanged =
                 fromDate !== format(selectedFromDate, 'MM/dd/yyyy');
 
@@ -136,6 +147,26 @@ const QDSDatepicker = ({
         }
     };
 
+    useEffect(() => {
+        // Update state if `selectedDay` or `range` changes
+        if (initialSelectedDay) {
+            setSelectedDay(format(new Date(initialSelectedDay), 'MM/dd/yyyy'));
+        }
+        if (initialRange) {
+            setFromDate(
+                initialRange.from
+                    ? format(new Date(initialRange.from), 'MM/dd/yyyy')
+                    : ''
+            );
+            setToDate(
+                initialRange.to
+                    ? format(new Date(initialRange.to), 'MM/dd/yyyy')
+                    : ''
+            );
+            setRange(initialRange);
+        }
+    }, [initialSelectedDay, initialRange]);
+
     return (
         <>
             <div className="ds-datepicker__wrapper">
@@ -149,10 +180,10 @@ const QDSDatepicker = ({
                               disabled: { before: new Date() }
                           }
                         : disabledDays === 'future'
-                        ? {
-                              disabled: { after: new Date() }
-                          }
-                        : {})}
+                          ? {
+                                disabled: { after: new Date() }
+                            }
+                          : {})}
                     style={{ top: calendarPositionY, right: 0 }}
                     {...(isRange
                         ? {
@@ -196,11 +227,13 @@ const QDSDatepicker = ({
                     handleInputDateChange={handleInputDateChange}
                     toggleCalendar={toggleCalendar}
                     label={label}
-                    inputRef={inputRef}
                     inputId={inputId}
+                    inputRef={inputRef}
                     isDisabled={isDisabled}
                     isRange={isRange}
                     isRequired={isRequired}
+                    isSimple={isSimple}
+                    placeholder={placeholder}
                     {...(isRange
                         ? {
                               fromDate: fromDate,
@@ -230,13 +263,20 @@ QDSDatepicker.propTypes = {
     hasError: PropTypes.bool,
     hintMessage: PropTypes.string,
     disabledDays: PropTypes.oneOf(['past', 'future']),
-    inputId: PropTypes.string,
+    inputId: PropTypes.string.isRequired,
     isDisabled: PropTypes.bool,
     isRange: PropTypes.bool,
     isRequired: PropTypes.bool,
-    label: PropTypes.string,
+    isSimple: PropTypes.bool,
+    label: PropTypes.string.isRequired,
     offset: PropTypes.number,
-    showOnTop: PropTypes.bool
+    placeholder: PropTypes.string,
+    showOnTop: PropTypes.bool,
+    selectedDay: PropTypes.string,
+    range: PropTypes.shape({
+        from: PropTypes.string,
+        to: PropTypes.string
+    })
 };
 
 export default QDSDatepicker;

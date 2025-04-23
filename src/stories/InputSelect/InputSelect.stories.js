@@ -2,7 +2,7 @@ import { on } from 'npm';
 import { QDSInputSelect } from './InputSelect';
 
 export default {
-    title: 'Components/Input select',
+    title: 'Components/Select/Single',
     component: QDSInputSelect,
     parameters: {
         layout: 'centered',
@@ -24,7 +24,7 @@ const nameOptions = [
     'Osterman, Jon'
 ];
 
-export const BasicInputSelect = {
+export const BasicSelect = {
     args: {
         inputId: 'input-1',
         label: 'Label',
@@ -44,33 +44,33 @@ export const BasicInputSelect = {
     }
 };
 
-export const RequiredInputSelect = {
+export const RequiredSelect = {
     args: {
-        ...BasicInputSelect.args,
+        ...BasicSelect.args,
         inputId: 'input-2',
         isRequired: true,
         name: 'input-2'
     },
     argTypes: {
-        ...BasicInputSelect.argTypes
+        ...BasicSelect.argTypes
     }
 };
 
-export const DisabledInputSelect = {
+export const DisabledSelect = {
     args: {
-        ...BasicInputSelect.args,
+        ...BasicSelect.args,
         inputId: 'input-3',
         isDisabled: true,
         name: 'input-3'
     },
     argTypes: {
-        ...BasicInputSelect.argTypes
+        ...BasicSelect.argTypes
     }
 };
 
-export const InputSelectWithError = {
+export const SelectWithError = {
     args: {
-        ...BasicInputSelect.args,
+        ...BasicSelect.args,
         errorMessage: 'Error message goes here.',
         hasError: true,
         inputId: 'input-7',
@@ -78,30 +78,30 @@ export const InputSelectWithError = {
         name: 'input-7'
     },
     argTypes: {
-        ...BasicInputSelect.argTypes
+        ...BasicSelect.argTypes
     }
 };
 
-export const InputSelectWithHint = {
+export const SelectWithHint = {
     args: {
-        ...BasicInputSelect.args,
+        ...BasicSelect.args,
         hintMessage: 'Hint message goes here.',
         inputId: 'input-8',
         name: 'input-8'
     },
     argTypes: {
-        ...BasicInputSelect.argTypes
+        ...BasicSelect.argTypes
     }
 };
 
-export const InputSelectWithTooltip = {
+export const SelectWithTooltip = {
     args: {
-        ...BasicInputSelect.args,
+        ...BasicSelect.args,
         inputId: 'input-9',
         name: 'input-9',
         tooltipMessage: 'Tooltip goes here.'
     },
     argTypes: {
-        ...BasicInputSelect.argTypes
+        ...BasicSelect.argTypes
     }
 };

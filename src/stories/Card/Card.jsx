@@ -4,14 +4,13 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 export const QDSCard = ({ 
-    children, customClasses, isInverse, type
+    children, customClasses, title
 }) => {
     return (
         <DSCard
             children={children}
             customClasses={classNames(customClasses)}
-            isInverse={isInverse}
-            type={type}
+            title={title}
         />
     );
 };
@@ -19,6 +18,5 @@ export const QDSCard = ({
 QDSCard.propTypes = {
     children: PropTypes.node,
     customClasses: PropTypes.array,
-    isInverse: PropTypes.bool,
-    type: PropTypes.oneOf(['media', 'product'])
+    title: PropTypes.string
 };

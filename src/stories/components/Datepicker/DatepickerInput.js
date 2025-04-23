@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import IconButton from '../Button/IconButton.index';
 
 const DatepickerInput = ({
     customClasses,
@@ -16,7 +15,9 @@ const DatepickerInput = ({
     isDisabled,
     isRange,
     isRequired,
+    isSimple,
     fromDate,
+    placeholder,
     selectedDay,
     toDate,
     showCalendar
@@ -50,56 +51,74 @@ const DatepickerInput = ({
                     <input
                         className="ds-from-field"
                         aria-labelledby="from"
-                        id="from"
-                        placeholder="mm/dd/yyyy"
+                        placeholder={placeholder}
                         onChange={handleInputDateChange}
                         value={fromDate}
                         name="from"
+                        disabled={isDisabled}
                         onFocusCapture={handleInputFocus}
                     />{' '}
                     <div className="ds-input__range-separator">–</div>
                     <input
                         className="ds-to-field"
                         aria-labelledby="to"
-                        id="to"
-                        placeholder="mm/dd/yyyy"
+                        placeholder={placeholder}
                         onChange={e => handleInputDateChange(e)}
                         value={toDate}
                         name="to"
                         onFocusCapture={handleInputFocus}
                     />
-                    <IconButton
-                        clickHandler={toggleCalendar}
-                        icon="calendar-blank"
-                    />
+                    <button
+                        onClick={toggleCalendar}
+                        className="ds-button --icon --right"
+                        aria-label="Select Date Range"
+                    >
+                        <span
+                            className="ds-icon--calendar-blank"
+                            aria-label="Calendar"
+                        ></span>
+                    </button>
                 </div>
+            ) : isSimple ? (
+                <input
+                    aria-labelledby="Selected day"
+                    placeholder={placeholder}
+                    onChange={e => handleInputDateChange(e)}
+                    id={inputId}
+                    value={selectedDay}
+                    name="Selected day"
+                    onFocusCapture={handleInputFocus}
+                    type="date"
+                />
             ) : (
                 <div className="ds-flex --start-center --row">
                     <input
-                        aria-labelledby={inputId}
-                        placeholder="mm/dd/yyyy"
-                        disabled={isDisabled}
-                        id={inputId}
+                        aria-labelledby="Selected day"
+                        placeholder={placeholder}
                         onChange={e => handleInputDateChange(e)}
+                        id={inputId}
                         value={selectedDay}
                         name="Selected day"
                         onFocusCapture={handleInputFocus}
                     />
 
-                    <IconButton
-                        customClasses={'--right'}
-                        clickHandler={toggleCalendar}
-                        icon="calendar-blank"
-                    />
+                    <button
+                        onClick={toggleCalendar}
+                        className="ds-button --icon --right"
+                        aria-label="Select Date Range"
+                    >
+                        <span
+                            className="ds-icon--calendar-blank"
+                            aria-label="Calendar"
+                        ></span>
+                    </button>
                 </div>
             )}
 
             {errorMessage && (
                 <div className="ds-input__error">{errorMessage}</div>
             )}
-            {hintMessage && !errorMessage && (
-                <div className="ds-input__hint">{hintMessage}</div>
-            )}
+            {hintMessage && <div className="ds-input__hint">{hintMessage}</div>}
         </div>
     );
 };
@@ -117,7 +136,10 @@ DatepickerInput.propTypes = {
     isDisabled: PropTypes.bool,
     isRange: PropTypes.bool,
     isRequired: PropTypes.bool,
+    isSimple: PropTypes.bool,
     fromDate: PropTypes.string,
+    placeholder: PropTypes.string,
+    selectedDay: PropTypes.string,
     toDate: PropTypes.string,
     showCalendar: PropTypes.bool
 };

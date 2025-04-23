@@ -4,15 +4,14 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const QDSCard = ({ children, customClasses, isInverse, type }) => {
+const QDSCard = ({ children, customClasses, title }) => {
     return (
-        <div
-            className={classNames(`ds-card`, customClasses, {
-                '--inverse': isInverse,
-                [`--${type}`]: type
-            })}
-        >
-            <div className="--content">{children}</div>
+        <div className={classNames(`ds-card`, customClasses, {})}>
+            <div className="--content">
+                {title && <h3>{title}</h3>}
+
+                {children}
+            </div>
         </div>
     );
 };
@@ -20,8 +19,7 @@ const QDSCard = ({ children, customClasses, isInverse, type }) => {
 QDSCard.propTypes = {
     children: PropTypes.node,
     customClasses: PropTypes.string,
-    isInverse: PropTypes.bool,
-    type: PropTypes.oneOf(['media', 'product'])
+    title: PropTypes.string
 };
 
 export default QDSCard;
