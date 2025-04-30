@@ -16,7 +16,7 @@ export const basicHeadData = [
     {
         id: 'gummiBears',
         label: 'Gummi bears',
-        icon: 'ds-icon--info'
+        icon: 'info'
     },
     {
         id: 'oatCakeTart',
@@ -35,14 +35,14 @@ export const basicHeadData = [
 export const basicCellData = [
     createData(
         `Pastry jelly-o wafer cheesecake`,
-        `<div class="ds-text-center"><span class="ds-icon--check" aria-label="check" role="img"></span></div>`,
-        `<div class="ds-text-center"><span class="ds-icon--check" aria-label="check" role="img"></span></div>`,
-        `<div class="ds-text-center"><span class="ds-icon--check" aria-label="check" role="img"></span></div>`
+        `<span class="ds-icon--check ds-m-auto" aria-label="check" role="img"></span>`,
+        `<span class="ds-icon--check ds-m-auto" aria-label="check" role="img"></span>`,
+        `<span class="ds-icon--check ds-m-auto" aria-label="check" role="img"></span>`
     ),
     createData(
         `Pastry marshmallow gingerbread`,
         ``,
-        `<div class="ds-text-center"><span class="ds-icon--check" aria-label="check" role="img"></span></div>`,
+        `<span class="ds-icon--check ds-m-auto" aria-label="check" role="img"></span>`,
         ``
     )
 ];

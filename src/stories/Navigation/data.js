@@ -1,78 +1,84 @@
 import React from 'react';
 
 export const headerNavData = [
-    {
-        label: "Women's Health",
-        route: null
-    },
-    {
-        label: "Men's Health",
-        route: null
-    },
-    {
-        label: 'General Health',
-        route: null
-    },
-    {
-        label: 'Shop All',
-        image: 'https://ds.cdn.questdiagnostics.com/assets/img/placeholder-img.png',
-        route: null,
-        subNav: [
-            {
-                label: 'Vitamins & Supplements',
-                route: null
-            },
-            {
-                label: 'Personal Care',
-                route: null
-            },
-            {
-                label: 'Beauty',
-                route: null
-            },
-            {
-                label: 'Medicines',
-                route: null
-            },
-            {
-                label: 'Health Devices',
-                route: null
-            },
-            {
-                label: 'Fitness',
-                route: null
-            },
-            {
-                label: 'Health Food & Drinks',
-                route: null
-            }
-        ]
-    }
+    [
+        {
+            label: "Women's Health",
+            route: 'https://www.google.com'
+        },
+        {
+            label: "Men's Health",
+            route: 'https://www.google.com'
+        },
+        {
+            label: 'General Health',
+            route: 'https://www.google.com'
+        }
+    ],
+    [
+        {
+            label: 'Shop All',
+            image: 'https://ds.cdn.questdiagnostics.com/assets/img/placeholder-img.png',
+            route: null,
+            subNav: [
+                {
+                    label: 'Vitamins & Supplements',
+                    route: 'https://www.google.com'
+                },
+                {
+                    label: 'Personal Care',
+                    route: 'https://www.google.com'
+                },
+                {
+                    label: 'Beauty',
+                    route: 'https://www.google.com'
+                },
+                {
+                    label: 'Medicines',
+                    route: 'https://www.google.com'
+                },
+                {
+                    label: 'Health Devices',
+                    route: 'https://www.google.com'
+                },
+                {
+                    label: 'Fitness',
+                    route: 'https://www.google.com'
+                },
+                {
+                    label: 'Health Food & Drinks',
+                    route: 'https://www.google.com'
+                }
+            ]
+        }
+    ]
 ];
 
 export const headerNavData2 = [
-    {
-        label: "Women's Health",
-        route: null
-    },
-    {
-        label: "Men's Health",
-        route: null
-    },
-    {
-        label: 'General Health',
-        route: null
-    }
+    [
+        {
+            label: "Women's Health",
+            route: 'https://www.google.com'
+        },
+        {
+            label: "Men's Health",
+            route: 'https://www.google.com'
+        },
+        {
+            label: 'General Health',
+            route: 'https://www.google.com'
+        }
+    ]
 ];
 
 export const topBarData = [
     {
         label: 'Schedule appointment',
-        route: null
+        route: 'https://www.google.com'
     },
     {
         label: 'Vew results',
-        route: null
+        route: 'https://www.google.com'
     }
 ];
 

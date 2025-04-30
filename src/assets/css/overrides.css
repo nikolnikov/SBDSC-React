@@ -158,3 +158,8 @@ body.sb-show-main.dark-theme {
 .ds-list li {
     padding: 0 !important;
 }
+
+.sb-story .ds-topbar~.ds-header .ds-header__subnav {
+    position: absolute;
+    top: 67px;
+}
