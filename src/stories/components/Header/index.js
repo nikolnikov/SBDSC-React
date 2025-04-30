@@ -22,12 +22,14 @@ const QDSHeader = ({
                 <HeaderTopBar
                     topBarData={topBarData}
                     userAccountData={userAccountData}
+                    noMargins={noMargins}
+                    noMaxWidth={noMaxWidth}
                 />
             )}
 
-            <header className="ds-header --react">
+            <header className="ds-header">
                 <div
-                    className={classNames('ds-grid', customClasses, {
+                    className={classNames('ds-row', customClasses, {
                         '--margins': !noMargins,
                         '--max-width': !noMaxWidth
                     })}

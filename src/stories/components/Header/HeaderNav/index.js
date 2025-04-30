@@ -1,11 +1,9 @@
 'use client';
-import React, { useState } from 'react';
-import classNames from 'classnames';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import QDSIconButton from '../../Button/IconButton.index';
-import QDSIcon from '../../Icon';
 
-const HeaderNav = ({ children, navData, topBarData }) => {
+const HeaderNav = ({ children, navData }) => {
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [isSubNavVisible, setIsSubNavVisible] = useState(false);
 
@@ -19,103 +17,118 @@ const HeaderNav = ({ children, navData, topBarData }) => {
         setIsSubNavVisible(!isSubNavVisible);
     };
 
+    useEffect(() => {
+        const body = document.querySelector('body');
+        const isMobile = window.innerWidth < 1024;
+        const scrollBarWidth =
+            window.innerWidth - document.documentElement.clientWidth;
+
+        if (isNavVisible && isMobile) {
+            body.style.paddingRight = scrollBarWidth + 'px';
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.paddingRight = null;
+            body.style.overflow = null;
+        }
+
+        return () => {
+            body.style.paddingRight = null;
+            body.style.overflow = null;
+        };
+    }, [isNavVisible]);
+
     return (
         <>
             <nav
                 className={`ds-header__nav ${isNavVisible ? 'show' : ''}`}
                 role="navigation"
             >
-                {(navData || []).map((navItem, idx) =>
-                    navItem.subNav ? (
-                        <div
-                            key={idx}
-                            className={classNames(
-                                'ds-header__nav-item --dropdown'
-                            )}
-                        >
-                            <a href={navItem.route} onClick={toggleSubNav}>
-                                {navItem.label}
-                            </a>
-
+                {(navData || []).map((navGroup, groupIdx) => (
+                    <div key={groupIdx} className="ds-header__nav-group">
+                        {navGroup.map((navItem, idx) => (
                             <div
-                                className={`ds-header__subnav ${
-                                    isSubNavVisible ? 'show' : ''
+                                className={`ds-header__nav-item ${
+                                    navItem.subNav ? '--dropdown' : ''
                                 }`}
-                                role="navigation"
+                                key={idx}
                             >
-                                <div className="ds-row --max-width --margins">
-                                    <div className="ds-header__subnav-content">
+                                {navItem.subNav ? (
+                                    <>
                                         <a
-                                            href={null}
+                                            href={navItem.route || null}
                                             onClick={toggleSubNav}
-                                            className="ds-link --icons"
                                         >
-                                            <QDSIcon name="caret-left" />
-                                            <span>Back</span>
+                                            {navItem.label}
                                         </a>
 
-                                        <div className="ds-header__subnav-title">
-                                            {navItem.label}
-                                        </div>
+                                        <div
+                                            className={`ds-header__subnav ${
+                                                isSubNavVisible ? 'show' : ''
+                                            }`}
+                                            role="navigation"
+                                        >
+                                            <div className="ds-row --max-width --margins">
+                                                <div className="ds-header__subnav-content">
+                                                    {/* <a
+                                                        href="#"
+                                                        onClick={toggleSubNav}
+                                                        className="ds-link --icons"
+                                                    >
+                                                        <QDSIcon name="caret-left" />
+                                                        <span>Back</span>
+                                                    </a> */}
 
-                                        <ul className="ds-header__subnav-links">
-                                            {navItem.subNav.map(
-                                                (subNavItem, index) => (
-                                                    <li key={index}>
-                                                        <a
-                                                            href={
-                                                                subNavItem.route
-                                                            }
-                                                            className="ds-link"
-                                                        >
-                                                            {subNavItem.label}
-                                                        </a>
-                                                    </li>
-                                                )
-                                            )}
-                                        </ul>
+                                                    <div className="ds-header__subnav-title">
+                                                        {navItem.label}
+                                                    </div>
 
-                                        {navItem.image && (
-                                            <div className="ds-header__subnav-img">
-                                                <img
-                                                    src={navItem.image}
-                                                    alt="header image"
-                                                />
+                                                    <ul className="ds-header__subnav-links">
+                                                        {navItem.subNav.map(
+                                                            (
+                                                                subNavItem,
+                                                                subIdx
+                                                            ) => (
+                                                                <li
+                                                                    key={subIdx}
+                                                                >
+                                                                    <a
+                                                                        href={
+                                                                            subNavItem.route
+                                                                        }
+                                                                        className="ds-link"
+                                                                    >
+                                                                        {
+                                                                            subNavItem.label
+                                                                        }
+                                                                    </a>
+                                                                </li>
+                                                            )
+                                                        )}
+                                                    </ul>
+
+                                                    {navItem.image && (
+                                                        <div className="ds-header__subnav-img">
+                                                            <img
+                                                                src={
+                                                                    navItem.image
+                                                                }
+                                                                alt={
+                                                                    navItem.label
+                                                                }
+                                                            />
+                                                        </div>
+                                                    )}
+                                                </div>
                                             </div>
-                                        )}
-                                    </div>
-                                </div>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <a href={navItem.route}>{navItem.label}</a>
+                                )}
                             </div>
-                        </div>
-                    ) : (
-                        <a
-                            key={idx}
-                            href={navItem.route}
-                            className={classNames('ds-header__nav-item')}
-                        >
-                            {navItem.label}
-                        </a>
-                    )
-                )}
-
-                {topBarData && (
-                    <div className="ds-topbar">
-                        {(topBarData || []).map((navItem, idx) => (
-                            <a
-                                key={idx}
-                                href={navItem.route}
-                                className="ds-link"
-                            >
-                                {navItem.label}
-                            </a>
                         ))}
-
-                        <button className="ds-topbar__account">
-                            <QDSIcon name="user-circle" />
-                            <span>LS</span>
-                        </button>
                     </div>
-                )}
+                ))}
             </nav>
 
             <div className="ds-header__right">

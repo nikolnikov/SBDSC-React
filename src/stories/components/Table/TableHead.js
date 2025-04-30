@@ -30,9 +30,12 @@ const TableHead = ({
                             isData
                                 ? 'ds-data-table__head-th'
                                 : 'ds-table__table-th'
-                        } --flexed-content-row ${
+                        } ds-row --flex-wrap ${
                             headCell.noSort && isSortable ? '--no-sort' : ''
                         }`}
+                        style={{
+                            width: headCell.width ? headCell.width : ''
+                        }}
                         key={headCell.id}
                         onClick={
                             isSortable && isData
@@ -53,7 +56,7 @@ const TableHead = ({
                                 {headCell.label}
                             </TableSortLabel>
                         ) : (
-                            <div className="--flex-wrap">
+                            <div className="ds-row --flex-wrap">
                                 {headCell.label}
                                 {headCell.icon && (
                                     <QDSIcon name={headCell.icon} />

@@ -15,11 +15,11 @@ const Input = ({
     isDisabled,
     isRequired,
     label,
-    leftIcon,
+    iconLeft,
     name,
     onChange,
     placeholder,
-    rightIcon,
+    iconRight,
     tooltipMessage,
     type = 'text',
     value
@@ -29,9 +29,9 @@ const Input = ({
             className={classNames('ds-input', customClasses, {
                 '--disabled': isDisabled,
                 '--error': hasError,
-                '--icons': rightIcon || leftIcon,
-                '--icon-left': leftIcon,
-                '--icon-right': rightIcon,
+                '--icons': iconRight || iconLeft,
+                '--icon-left': iconLeft,
+                '--icon-right': iconRight,
                 '--required': isRequired
             })}
         >
@@ -47,7 +47,7 @@ const Input = ({
                 )}
             </label>
             <div className="ds-flex --start-center --row">
-                {leftIcon && <QDSIcon name={leftIcon} customClasses="--left" />}
+                {iconLeft && <QDSIcon name={iconLeft} customClasses="--left" />}
                 <input
                     disabled={isDisabled}
                     id={inputId}
@@ -57,8 +57,8 @@ const Input = ({
                     onChange={onChange}
                     value={value}
                 />
-                {rightIcon && (
-                    <QDSIcon name={rightIcon} customClasses="--right" />
+                {iconRight && (
+                    <QDSIcon name={iconRight} customClasses="--right" />
                 )}
             </div>
 
@@ -85,11 +85,11 @@ Input.propTypes = {
     isDisabled: PropTypes.bool,
     isRequired: PropTypes.bool,
     label: PropTypes.string,
-    leftIcon: PropTypes.string,
+    iconLeft: PropTypes.string,
     name: PropTypes.string,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
-    rightIcon: PropTypes.string,
+    iconRight: PropTypes.string,
     tooltipMessage: PropTypes.string,
     type: PropTypes.string,
     value: PropTypes.string

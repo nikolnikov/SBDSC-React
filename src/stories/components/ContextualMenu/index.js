@@ -45,7 +45,9 @@ const QDSContextualMenu = ({
             }
             onClose={closeMenu}
             open={open}
-            PaperProps={{ sx: { width: menuWidth } }}
+            PaperProps={{
+                sx: { width: menuWidth }
+            }}
         >
             {children
                 ? children

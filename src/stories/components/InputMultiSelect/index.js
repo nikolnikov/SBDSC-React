@@ -60,8 +60,7 @@ const InputMultiSelect = ({
                         </span>
                     ))}
                 </div>
-
-                <div className="ds-dropdown__selected-plus"></div>
+                <span className="ds-dropdown__selected-plus"></span>
             </>
         );
     };

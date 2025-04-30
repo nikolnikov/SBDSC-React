@@ -16,7 +16,7 @@ const TableRow = ({ isData, tableCellData }) => {
                             isData
                                 ? 'ds-data-table__row-td'
                                 : 'ds-table__table-td'
-                        } --flexed-content-row`}
+                        } ds-row --flex-wrap`}
                         key={`${tableCellData.id}-${cellKey}-${index}`}
                     >
                         <div

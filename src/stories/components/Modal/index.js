@@ -36,7 +36,7 @@ const QDSModal = ({
         };
 
         if (opened) {
-            setTimeout(checkScrollability, 100);
+            setTimeout(checkScrollability, 100); // Strange bug where contentRef.current is null on first render, but this fixes it
             window.addEventListener('resize', checkScrollability);
         }
 

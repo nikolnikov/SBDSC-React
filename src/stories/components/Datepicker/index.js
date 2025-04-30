@@ -180,10 +180,10 @@ const QDSDatepicker = ({
                               disabled: { before: new Date() }
                           }
                         : disabledDays === 'future'
-                          ? {
-                                disabled: { after: new Date() }
-                            }
-                          : {})}
+                        ? {
+                              disabled: { after: new Date() }
+                          }
+                        : {})}
                     style={{ top: calendarPositionY, right: 0 }}
                     {...(isRange
                         ? {
