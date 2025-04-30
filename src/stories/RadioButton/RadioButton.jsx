@@ -1,42 +1,41 @@
 import React from 'react';
-import DSRadioButton from '../components/RadioButton'
+import DSRadioGroup from '../components/RadioGroup';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export const QDSRadioButton = ({
+export const QDSRadioGroup = ({ 
     customClasses,
-    inputId,
-    isChecked = false,
-    isDisabled = false,
-    label,
-    name,
+    groupLabel,
+    groupName,
+    isVertical = false,
     onChange,
-    isRequired,
-    value
+    radioOptions
 }) => {
     return (
-        <DSRadioButton
+        <DSRadioGroup
             customClasses={classNames(customClasses)}
-            inputId={inputId}
-            isChecked={isChecked}
-            isDisabled={isDisabled}
-            label={label}
-            name={name}
+            groupLabel={groupLabel}
+            groupName={groupName}
+            isVertical={isVertical}
             onChange={onChange}
-            isRequired={isRequired}
-            value={value}
+            radioOptions={radioOptions}
         />
     );
 };
 
-QDSRadioButton.propTypes = {
+QDSRadioGroup.propTypes = {
     customClasses: PropTypes.string,
-    inputId: PropTypes.string.isRequired,
-    isChecked: PropTypes.bool,
-    isDisabled: PropTypes.bool,
-    label: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    groupLabel: PropTypes.string,
+    isVertical: PropTypes.bool,
+    groupName: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    isRequired: PropTypes.bool,
-    value: PropTypes.string.isRequired
+    radioOptions: PropTypes.arrayOf(
+        PropTypes.shape({
+            inputId: PropTypes.string.isRequired,
+            isChecked: PropTypes.bool,
+            isDisabled: PropTypes.bool,
+            value: PropTypes.string.isRequired,
+            label: PropTypes.string.isRequired
+        })
+    ).isRequired
 };
