@@ -12,6 +12,11 @@ export default {
             disable: true
         }
     },
+    argTypes: {
+        status: {
+            control: 'select'
+        }
+    },
     tags: ['autodocs', '!dev']
 };
 
@@ -67,7 +72,7 @@ export const SolidWarningBadge = {
 
 export const SecondaryNeutralBadge = {
     args: {
-        isSecondary: true,
+        secondary: true,
         label: 'Status',
         status: 'neutral'
     },
@@ -78,7 +83,7 @@ export const SecondaryNeutralBadge = {
 
 export const SecondaryInformativeBadge = {
     args: {
-        isSecondary: true,
+        secondary: true,
         label: 'Status',
         status: 'informative'
     },
@@ -89,7 +94,7 @@ export const SecondaryInformativeBadge = {
 
 export const SecondarySuccessBadge = {
     args: {
-        isSecondary: true,
+        secondary: true,
         label: 'Status',
         status: 'success'
     },
@@ -100,7 +105,7 @@ export const SecondarySuccessBadge = {
 
 export const SecondaryCriticalBadge = {
     args: {
-        isSecondary: true,
+        secondary: true,
         label: 'Status',
         status: 'critical'
     },
@@ -111,7 +116,7 @@ export const SecondaryCriticalBadge = {
 
 export const SecondaryWarningBadge = {
     args: {
-        isSecondary: true,
+        secondary: true,
         label: 'Status',
         status: 'warning'
     },

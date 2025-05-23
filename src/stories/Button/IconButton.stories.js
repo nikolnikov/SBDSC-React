@@ -55,3 +55,13 @@ export const InverseIconButton = {
         ...PrimaryIconButton.argTypes
     }
 };
+
+export const IconButtonWithTooltip = {
+    args: {
+        ...PrimaryIconButton.args,
+        tooltip: 'Tooltip goes here.'
+    },
+    argTypes: {
+        ...PrimaryIconButton.argTypes
+    }
+};

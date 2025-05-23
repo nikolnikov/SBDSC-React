@@ -54,6 +54,13 @@ h2#stories,
     overflow: visible !important;
 }
 
+.docs-story { 
+    min-height: 140px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
 .docs-story div[scale],
 .docs-story:not(.sb-story *) {
     transform: none !important;

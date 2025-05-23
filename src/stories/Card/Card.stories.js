@@ -29,8 +29,28 @@ export const BasicCard = {
                 nisl quis, ultricies nisl. Nulla facilisi. Sed sit amet eros
                 ullamcorper, aliquet nisl quis, ultricies nisl.
             </p>
+        )
+    },
+    argTypes: {
+        customClasses: { table: { disable: true } }
+    }
+};
+
+export const CardWithTitle = {
+    args: {
+        children: (
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                consectetur, eros sit amet ornare placerat, enim lectus
+                hendrerit nisl, quis lacinia eros purus vel nunc. Donec
+                imperdiet, leo quis fermentum luctus, nibh nibh vehicula ipsum,
+                eget faucibus nisl enim sed felis. Donec sit amet tincidunt
+                nisl. Nulla facilisi. Sed sit amet eros ullamcorper, aliquet
+                nisl quis, ultricies nisl. Nulla facilisi. Sed sit amet eros
+                ullamcorper, aliquet nisl quis, ultricies nisl.
+            </p>
         ),
-        title: 'Card title'
+        title: 'Title'
     },
     argTypes: {
         customClasses: { table: { disable: true } }

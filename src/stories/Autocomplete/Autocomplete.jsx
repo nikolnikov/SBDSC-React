@@ -10,10 +10,10 @@ export const QDSAutocomplete = ({
     hintMessage,
     inputId,
     isDisabled = false,
-    searchIcon = false,
+    isRequired = false,
     label,
     placeholder,
-    isRequired = false,
+    searchIcon = false,
     maxWidth,
     optionList
 }) => {
@@ -47,10 +47,10 @@ QDSAutocomplete.propTypes = {
     hintMessage: PropTypes.string,
     inputId: PropTypes.string,
     isDisabled: PropTypes.bool,
-    searchIcon: PropTypes.bool,
+    isRequired: PropTypes.bool,
     label: PropTypes.string,
     placeholder: PropTypes.string,
-    isRequired: PropTypes.bool,
+    searchIcon: PropTypes.bool,
     maxWidth: PropTypes.number,
     getSelection: PropTypes.func,
     optionList: PropTypes.array

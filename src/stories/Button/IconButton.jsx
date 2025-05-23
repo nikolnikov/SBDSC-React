@@ -9,7 +9,10 @@ export const QDSIconButton = ({
     isDestructive = false,
     isDisabled = false,
     isInverse = false,
-    size = 'large'
+    size = 'large',
+    tooltip,
+    tooltipPlacement = 'top',
+    whiteTooltip
 }) => {  
     return (
         <DSIconButton
@@ -20,6 +23,9 @@ export const QDSIconButton = ({
             isDisabled={isDisabled}
             isInverse={isInverse}
             size={size}
+            tooltip={tooltip}
+            tooltipPlacement={tooltipPlacement}
+            whiteTooltip={whiteTooltip}
         />
     );
 };
@@ -31,5 +37,8 @@ QDSIconButton.propTypes = {
     isDisabled: PropTypes.bool,
     isInverse: PropTypes.bool,
     clickHandler: PropTypes.func,
-    size: PropTypes.oneOf(['sm', 'md', 'lg'])
+    size: PropTypes.oneOf(['sm', 'md', 'lg']),
+    tooltip: PropTypes.string,
+    tooltipPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+    whiteTooltip: PropTypes.bool
 };

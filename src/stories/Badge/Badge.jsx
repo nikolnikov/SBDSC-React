@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 export const QDSBadge = ({ 
     customClasses = [],
     label,
-    isSecondary = false,
+    secondary = false,
     status = 'neutral',
 }) => {
     return (
         <DSBadge
             customClasses={classNames(customClasses)}
             label={label}
-            isSecondary={isSecondary}
+            secondary={secondary}
             status={status}
         />
     );
@@ -22,6 +22,6 @@ export const QDSBadge = ({
 QDSBadge.propTypes = {
     customClasses: PropTypes.array,
     label: PropTypes.string,
-    isSecondary: PropTypes.bool,
+    secondary: PropTypes.bool,
     status: PropTypes.oneOf(['neutral', 'informative', 'success', 'warning', 'critical']),
 };

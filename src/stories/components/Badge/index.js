@@ -8,7 +8,7 @@ import QDSIcon from '../Icon';
 const QDSBadge = ({
     customClasses = [],
     label,
-    isSecondary,
+    secondary,
     status = 'neutral'
 }) => {
     const icons = {
@@ -20,7 +20,7 @@ const QDSBadge = ({
     return (
         <div
             className={classNames('ds-badge', customClasses, {
-                '--secondary': isSecondary,
+                '--secondary': secondary,
                 [`--${status}`]: status
             })}
             role="status"
@@ -33,8 +33,8 @@ const QDSBadge = ({
 
 QDSBadge.propTypes = {
     customClasses: PropTypes.string,
-    isSecondary: PropTypes.bool,
     label: PropTypes.string,
+    secondary: PropTypes.bool,
     status: PropTypes.oneOf([
         'neutral',
         'informative',

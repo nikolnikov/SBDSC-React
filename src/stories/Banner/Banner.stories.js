@@ -33,12 +33,7 @@ export const BasicBanner = {
 
 export const BannerWithCloseButton = {
     args: {
-        children: (
-            <p>
-                Use code <b>20%WEEK</b> and take action on the symptoms keeping
-                you from feeling your best.
-            </p>
-        ),
+        ...BasicBanner.args,
         dismissHandler: () => {}
     },
     argTypes: {
@@ -48,13 +43,7 @@ export const BannerWithCloseButton = {
 
 export const BannerWithTitleAndCloseButton = {
     args: {
-        children: (
-            <p>
-                Use code <b>20%WEEK</b> and take action on the symptoms keeping
-                you from feeling your best.{' '}
-                <a href="https://www.questhealth.com/">Shop now</a>
-            </p>
-        ),
+        ...BasicBanner.args,
         dismissHandler: () => {},
         title: 'Enjoy 20% off this test'
     },
@@ -65,12 +54,7 @@ export const BannerWithTitleAndCloseButton = {
 
 export const BannerWithIconAndCloseButton = {
     args: {
-        children: (
-            <p>
-                Use code <b>20%WEEK</b> and take action on the symptoms keeping
-                you from feeling your best.
-            </p>
-        ),
+        ...BasicBanner.args,
         dismissHandler: () => {},
         icon: 'face-mask'
     },
@@ -81,13 +65,7 @@ export const BannerWithIconAndCloseButton = {
 
 export const BannerWithIllustrativeIconTitleAndCloseButton = {
     args: {
-        children: (
-            <p>
-                Use code <b>20%WEEK</b> and take action on the symptoms keeping
-                you from feeling your best.{' '}
-                <a href="https://www.questhealth.com/">Shop now</a>
-            </p>
-        ),
+        ...BasicBanner.args,
         dismissHandler: () => {},
         illustrativeIcon: 'pcp',
         title: 'Enjoy 20% off this test'
@@ -100,12 +78,7 @@ export const BannerWithIllustrativeIconTitleAndCloseButton = {
 
 export const CenteredBanner = {
     args: {
-        children: (
-            <p>
-                Use code <b>20%WEEK</b> and take action on the symptoms keeping
-                you from feeling your best.
-            </p>
-        ),
+        ...BasicBanner.args,
         isCentered: true
     },
     argTypes: {
@@ -116,12 +89,7 @@ export const CenteredBanner = {
 
 export const CenteredBannerWithCloseButton = {
     args: {
-        children: (
-            <p>
-                Use code <b>20%WEEK</b> and take action on the symptoms keeping
-                you from feeling your best.
-            </p>
-        ),
+        ...BasicBanner.args,
         dismissHandler: () => {},
         isCentered: true
     },
@@ -132,13 +100,7 @@ export const CenteredBannerWithCloseButton = {
 
 export const CenteredBannerWithTitleAndCloseButton = {
     args: {
-        children: (
-            <p>
-                Use code <b>20%WEEK</b> and take action on the symptoms keeping
-                you from feeling your best.{' '}
-                <a href="https://www.questhealth.com/">Shop now</a>
-            </p>
-        ),
+        ...BasicBanner.args,
         dismissHandler: () => {},
         isCentered: true,
         title: 'Enjoy 20% off this test'
@@ -150,12 +112,7 @@ export const CenteredBannerWithTitleAndCloseButton = {
 
 export const CenteredBannerWithIconAndCloseButton = {
     args: {
-        children: (
-            <p>
-                Use code <b>20%WEEK</b> and take action on the symptoms keeping
-                you from feeling your best.
-            </p>
-        ),
+        ...BasicBanner.args,
         dismissHandler: () => {},
         icon: 'face-mask',
         isCentered: true
