@@ -43,7 +43,7 @@ export const DateRangePicker = {
     args: {
         isRange: true,
         label: 'Custom range',
-        hintMessage: 'mm/dd/yyyy - mm/dd/yyyy',
+        hintMessage: 'mm/dd/yyyy',
         inputId: 'datepicker2',
         showOnTop: true
     },
