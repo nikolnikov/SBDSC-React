@@ -60,7 +60,7 @@ export const TextInputWithLeftIcon = {
     args: {
         ...BasicTextInput.args,
         inputId: 'input-4',
-        leftIcon: 'search',
+        iconLeft: 'search',
         name: 'input-4'
     },
     argTypes: {
@@ -72,7 +72,7 @@ export const TextInputWithRightIcon = {
     args: {
         ...BasicTextInput.args,
         inputId: 'input-5',
-        rightIcon: 'location',
+        iconRight: 'location',
         name: 'input-5'
     },
     argTypes: {
@@ -84,8 +84,8 @@ export const TextInputWithBothIcons = {
     args: {
         ...BasicTextInput.args,
         inputId: 'input-6',
-        leftIcon: 'search',
-        rightIcon: 'location',
+        iconLeft: 'search',
+        iconRight: 'location',
         name: 'input-6'
     },
     argTypes: {

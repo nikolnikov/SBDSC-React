@@ -56,6 +56,7 @@ const DatepickerInput = ({
                         value={fromDate}
                         name="from"
                         disabled={isDisabled}
+                        onClick={toggleCalendar}
                         onFocusCapture={handleInputFocus}
                     />{' '}
                     <div className="ds-input__range-separator">–</div>
@@ -66,6 +67,7 @@ const DatepickerInput = ({
                         onChange={e => handleInputDateChange(e)}
                         value={toDate}
                         name="to"
+                        onClick={toggleCalendar}
                         onFocusCapture={handleInputFocus}
                     />
                     <button
@@ -99,6 +101,7 @@ const DatepickerInput = ({
                         id={inputId}
                         value={selectedDay}
                         name="Selected day"
+                        onClick={toggleCalendar}
                         onFocusCapture={handleInputFocus}
                     />
 
@@ -118,7 +121,22 @@ const DatepickerInput = ({
             {errorMessage && (
                 <div className="ds-input__error">{errorMessage}</div>
             )}
-            {hintMessage && <div className="ds-input__hint">{hintMessage}</div>}
+
+            {isRange
+                ? hintMessage && (
+                      <div className="ds-input__hint">
+                          <div className="ds-input__hint-start">
+                              {hintMessage}
+                          </div>
+
+                          <div className="ds-input__hint-end">
+                              {hintMessage}
+                          </div>
+                      </div>
+                  )
+                : hintMessage && (
+                      <div className="ds-input__hint">{hintMessage}</div>
+                  )}
         </div>
     );
 };

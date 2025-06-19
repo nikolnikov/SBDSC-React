@@ -56,7 +56,7 @@ const QDSDatepicker = ({
     const DAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
     const toggleCalendar = () => {
-        const yPositionOffset = showOnTop ? offset || -335 : offset || 63;
+        const yPositionOffset = showOnTop ? offset || -335 : offset || 68;
 
         setCalendarPositionY(
             () => (inputRef.current.style.top = 0 + yPositionOffset)
@@ -68,20 +68,31 @@ const QDSDatepicker = ({
     const handleInputDateChange = e => {
         const { name, value } = e.target;
 
+        // Dynamically add slashes while typing
+        const formattedValue = value
+            .replace(/\D/g, '') // Remove non-numeric characters
+            .replace(/^(\d{2})(\d{0,2})?(\d{0,4})?$/, (match, mm, dd, yyyy) => {
+                let result = mm;
+                if (dd) result += `/${dd}`;
+                if (yyyy) result += `/${yyyy}`;
+                return result;
+            }) // Format progressively as MM/DD/YYYY
+            .slice(0, 10); // Limit to 10 characters
+
         if (name === 'from') {
-            setFromDate(value);
+            setFromDate(formattedValue);
         } else if (name === 'to') {
-            setToDate(value);
+            setToDate(formattedValue);
         } else if (name === 'Selected day') {
-            setSelectedDay(value);
+            setSelectedDay(formattedValue);
         } else {
             return;
         }
 
-        if (dateRegex.test(value)) {
+        if (dateRegex.test(formattedValue)) {
             setRange(prevState => ({
                 ...prevState,
-                [name]: new Date(value)
+                [name]: new Date(formattedValue)
             }));
         } else {
             setRange(prevState => ({
@@ -180,10 +191,10 @@ const QDSDatepicker = ({
                               disabled: { before: new Date() }
                           }
                         : disabledDays === 'future'
-                        ? {
-                              disabled: { after: new Date() }
-                          }
-                        : {})}
+                          ? {
+                                disabled: { after: new Date() }
+                            }
+                          : {})}
                     style={{ top: calendarPositionY, right: 0 }}
                     {...(isRange
                         ? {

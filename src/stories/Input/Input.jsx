@@ -12,11 +12,11 @@ export const QDSInput = ({
     isDisabled = false,
     isRequired = false,
     label,
-    leftIcon,
+    iconLeft,
+    iconRight,
     name,
     onChange,
     placeholder,
-    rightIcon,
     tooltipMessage,
     type = 'text',
     value
@@ -31,11 +31,11 @@ export const QDSInput = ({
             isDisabled={isDisabled}
             isRequired={isRequired}
             label={label}
-            leftIcon={leftIcon}
+            iconLeft={iconLeft}
             name={name}
             onChange={onChange}
             placeholder={placeholder}
-            rightIcon={rightIcon}
+            iconRight={iconRight}
             tooltipMessage={tooltipMessage}
             type={type}
             value={value}
@@ -52,11 +52,11 @@ QDSInput.propTypes = {
     isDisabled: PropTypes.bool,
     isRequired: PropTypes.bool,
     label: PropTypes.string,
-    leftIcon: PropTypes.string,
+    iconLeft: PropTypes.string,
     name: PropTypes.string,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
-    rightIcon: PropTypes.string,
+    iconRight: PropTypes.string,
     tooltipMessage: PropTypes.string,
     type: PropTypes.string,
     value: PropTypes.string

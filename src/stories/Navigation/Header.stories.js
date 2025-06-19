@@ -61,7 +61,7 @@ export const HeaderWithSearch = {
         children: (
             <QDSInput
                 inputId="search-input"
-                leftIcon="search"
+                iconLeft="search"
                 name="search-input"
                 placeholder="Search"
                 type="text"
