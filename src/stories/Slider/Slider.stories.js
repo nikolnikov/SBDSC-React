@@ -16,7 +16,9 @@ export default {
 };
 
 export const DefaultSlider = {
-    args: {},
+    args: {
+        defaultValue: 50
+    },
     argTypes: {
         customClasses: { table: { disable: true } }
     }
@@ -24,6 +26,7 @@ export const DefaultSlider = {
 
 export const DisabledSlider = {
     args: {
+        ...DefaultSlider.args,
         isDisabled: true
     },
     argTypes: {
@@ -33,7 +36,9 @@ export const DisabledSlider = {
 
 export const DoubleSlider = {
     args: {
-        doubleSlider: true
+        doubleSlider: true,
+        leftDefaultValue: 25,
+        rightDefaultValue: 75
     },
     argTypes: {
         ...DefaultSlider.argTypes
@@ -42,6 +47,7 @@ export const DoubleSlider = {
 
 export const DisabledDoubleSlider = {
     args: {
+        ...DoubleSlider.args,
         isDisabled: true,
         doubleSlider: true
     },

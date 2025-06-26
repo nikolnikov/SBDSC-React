@@ -18,7 +18,7 @@ export default {
 export const BasicToggle = {
     args: {
         inputId: 'toggle-1',
-        label: 'Toggle label'
+        label: 'Label'
     },
     argTypes: {
         customClasses: { table: { disable: true } },
@@ -32,7 +32,7 @@ export const DisabledToggle = {
     args: {
         inputId: 'toggle-2',
         isDisabled: true,
-        label: 'Toggle label'
+        label: 'Label'
     },
     argTypes: {
         ...BasicToggle.argTypes
@@ -43,7 +43,7 @@ export const CheckedToggle = {
     args: {
         inputId: 'toggle-3',
         isChecked: true,
-        label: 'Toggle label'
+        label: 'Label'
     },
     argTypes: {
         ...BasicToggle.argTypes

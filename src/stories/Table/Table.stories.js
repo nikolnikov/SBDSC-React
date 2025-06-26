@@ -44,3 +44,15 @@ BasicTable.argTypes = {
     tableCellData: { table: { disable: true } },
     tableHeadData: { table: { disable: true } }
 };
+
+export const DataTable = Template.bind({});
+DataTable.args = {
+    isData: true
+};
+DataTable.argTypes = {
+    sortOrder: { table: { disable: true } },
+    sortProperty: { table: { disable: true } },
+    isSortable: { table: { disable: true } },
+    tableCellData: { table: { disable: true } },
+    tableHeadData: { table: { disable: true } }
+};

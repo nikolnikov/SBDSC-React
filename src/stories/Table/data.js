@@ -1,49 +1,54 @@
-export function createData(
-    gummiBears,
-    oatCakeTart,
-    applePieTopping,
-    whippedCream
-) {
+export function createData(feature, basic, pro, premium) {
     return {
-        gummiBears,
-        oatCakeTart,
-        applePieTopping,
-        whippedCream
+        feature,
+        basic,
+        pro,
+        premium
     };
 }
 
 export const basicHeadData = [
     {
-        id: 'gummiBears',
-        label: 'Gummi bears',
-        icon: 'info'
+        id: 'feature',
+        label: 'Feature',
+        icon: 'info',
+        width: ''
     },
     {
-        id: 'oatCakeTart',
-        label: 'Oat cake tart'
+        id: 'basic',
+        label: 'Basic',
+        width: '180px'
     },
     {
-        id: 'applePieTopping',
-        label: 'Apple pie topping'
+        id: 'pro',
+        label: 'Pro',
+        width: '180px'
     },
     {
-        id: 'whippedCream',
-        label: 'Whipped cream'
+        id: 'premium',
+        label: 'Premium',
+        width: '180px'
     }
 ];
 
 export const basicCellData = [
     createData(
-        `Pastry jelly-o wafer cheesecake`,
-        `<span class="ds-icon--check ds-m-auto" aria-label="check" role="img"></span>`,
+        `100% benefit for covered laboratory services`,
+        ``,
+        ``,
+        `<span class="ds-icon--check ds-m-auto" aria-label="check" role="img"></span>`
+    ),
+    createData(
+        `Limited out-of-pocket patient cost for covered laboratory services`,
+        ``,
         `<span class="ds-icon--check ds-m-auto" aria-label="check" role="img"></span>`,
         `<span class="ds-icon--check ds-m-auto" aria-label="check" role="img"></span>`
     ),
     createData(
-        `Pastry marshmallow gingerbread`,
-        ``,
+        `Digital member card`,
         `<span class="ds-icon--check ds-m-auto" aria-label="check" role="img"></span>`,
-        ``
+        `<span class="ds-icon--check ds-m-auto" aria-label="check" role="img"></span>`,
+        `<span class="ds-icon--check ds-m-auto" aria-label="check" role="img"></span>`
     )
 ];
 

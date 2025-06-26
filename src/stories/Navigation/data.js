@@ -3,16 +3,16 @@ import React from 'react';
 export const headerNavData = [
     [
         {
-            label: "Women's Health",
-            route: 'https://www.google.com'
+            label: 'Menu Option 1',
+            route: '#'
         },
         {
-            label: "Men's Health",
-            route: 'https://www.google.com'
+            label: 'Menu Option 2',
+            route: '#'
         },
         {
-            label: 'General Health',
-            route: 'https://www.google.com'
+            label: 'Menu Option 3',
+            route: '#'
         }
     ],
     [
@@ -57,28 +57,28 @@ export const headerNavData = [
 export const headerNavData2 = [
     [
         {
-            label: "Women's Health",
-            route: 'https://www.google.com'
+            label: 'Menu Option 1',
+            route: '#'
         },
         {
-            label: "Men's Health",
-            route: 'https://www.google.com'
+            label: 'Menu Option 2',
+            route: '#'
         },
         {
-            label: 'General Health',
-            route: 'https://www.google.com'
+            label: 'Menu Option 3',
+            route: '#'
         }
     ]
 ];
 
 export const topBarData = [
     {
-        label: 'Schedule appointment',
-        route: 'https://www.google.com'
+        label: 'Topbar Link',
+        route: '#'
     },
     {
-        label: 'Vew results',
-        route: 'https://www.google.com'
+        label: 'Topbar Link',
+        route: '#'
     }
 ];
 
