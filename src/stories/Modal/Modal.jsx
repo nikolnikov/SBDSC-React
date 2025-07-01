@@ -15,6 +15,7 @@ export const QDSModal = ({
     opened,
     secondaryButtonHandler,
     secondaryButtonLabel,
+    showLegalText = false,
     title,
     type
 }) => {
@@ -48,6 +49,7 @@ export const QDSModal = ({
                 modalClose={closeModal}
                 secondaryButtonHandler={secondaryButtonHandler}
                 secondaryButtonLabel={secondaryButtonLabel}
+                showLegalText={showLegalText}
                 type={type}
                 title={title}
             />
@@ -67,6 +69,7 @@ QDSModal.propTypes = {
     opened: PropTypes.bool,
     secondaryButtonHandler: PropTypes.func,
     secondaryButtonLabel: PropTypes.string,
+    showLegalText: PropTypes.bool,
     title: PropTypes.string.isRequired,
     type: PropTypes.oneOf(['alert', 'error', 'informative', 'success']),
 };

@@ -1,5 +1,5 @@
 body {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Figtree', sans-serif !important;
     font-size: 16px;
 }
 
@@ -16,14 +16,14 @@ h2#stories,
 }
 
 .sbdocs.sb-unstyled {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Figtree', sans-serif !important;
     margin: 0 0 24px;
     overflow: visible !important;
     padding-top: 0;
 }
 
 .sb-story.sb-unstyled {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Figtree', sans-serif !important;
 }
 
 .docblock-source.sb-unstyled {
@@ -131,7 +131,7 @@ h2#stories,
 
 .ds-list li {
     font:
-        15px 'Roboto',
+        15px 'Figtree',
         sans-serif;
     line-height: 150%;
     padding: 0;
@@ -169,4 +169,8 @@ body.sb-show-main.dark-theme {
 .sb-story .ds-topbar~.ds-header .ds-header__subnav {
     position: absolute;
     top: 67px;
+}
+
+.ds-button {
+    margin: auto;
 }

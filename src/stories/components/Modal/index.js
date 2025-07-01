@@ -19,6 +19,7 @@ const QDSModal = ({
     opened,
     secondaryButtonHandler,
     secondaryButtonLabel,
+    showLegalText,
     type,
     title
 }) => {
@@ -63,7 +64,8 @@ const QDSModal = ({
             >
                 <div
                     className={classNames('ds-modal__wrapper', {
-                        '--all-btns': ghostButtonLabel
+                        '--all-btns': ghostButtonLabel,
+                        '--legal-spacing': showLegalText
                     })}
                 >
                     <div className="ds-modal__header">
@@ -115,6 +117,12 @@ const QDSModal = ({
                         </div>
                     </div>
                 )}
+
+                {showLegalText && (
+                    <div className="ds-modal__legal-text">
+                        All rights reserved. &copy; {new Date().getFullYear()}
+                    </div>
+                )}
             </div>
         </MuiModal>
     );
@@ -132,6 +140,7 @@ QDSModal.propTypes = {
     opened: propTypes.bool,
     secondaryButtonHandler: propTypes.func,
     secondaryButtonLabel: propTypes.string,
+    showLegalText: propTypes.bool,
     type: propTypes.oneOf(['alert', 'error', 'informative', 'success']),
     title: propTypes.string.isRequired
 };

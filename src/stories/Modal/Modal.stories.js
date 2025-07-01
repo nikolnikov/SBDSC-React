@@ -19,10 +19,8 @@ export default {
 export const BasicModal = {
     args: {
         buttonHandler: () => {},
-        buttonLabel: 'Yes',
-        ghostButtonHandler: () => {},
-        ghostButtonLabel: 'Cancel',
-        secondaryButtonLabel: 'No',
+        buttonLabel: 'Button',
+        secondaryButtonLabel: 'Button',
         secondaryButtonHandler: () => {},
         children: (
             <p>

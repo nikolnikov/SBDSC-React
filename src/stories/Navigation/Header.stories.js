@@ -10,7 +10,7 @@ import {
 } from './data';
 
 export default {
-    title: 'Components/Navigation/Header',
+    title: 'Components/Navigation/Page header',
     component: QDSHeader,
     parameters: {
         layout: 'centered',

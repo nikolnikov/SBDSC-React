@@ -1,7 +1,7 @@
 import { QDSInput } from './Input';
 
 export default {
-    title: 'Components/Text input',
+    title: 'Components/Inputs/Text input',
     component: QDSInput,
     parameters: {
         layout: 'centered',
