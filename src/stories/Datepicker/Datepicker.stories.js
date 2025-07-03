@@ -25,7 +25,8 @@ export const BasicDatepicker = {
         customClasses: { table: { disable: true } },
         inputId: { table: { disable: true } },
         offset: { table: { disable: true } },
-        showOnTop: { table: { disable: true } }
+        showOnTop: { table: { disable: true } },
+        range: { table: { disable: true } }
     }
 };
 
