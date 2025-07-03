@@ -19,8 +19,8 @@ const QDSDatepicker = ({
     isDisabled,
     isRange,
     isRequired,
-    isSimple,
     label,
+    labelEndDate,
     placeholder,
     offset,
     range: initialRange,
@@ -238,12 +238,12 @@ const QDSDatepicker = ({
                     handleInputDateChange={handleInputDateChange}
                     toggleCalendar={toggleCalendar}
                     label={label}
+                    labelEndDate={labelEndDate}
                     inputId={inputId}
                     inputRef={inputRef}
                     isDisabled={isDisabled}
                     isRange={isRange}
                     isRequired={isRequired}
-                    isSimple={isSimple}
                     placeholder={placeholder}
                     {...(isRange
                         ? {
@@ -278,8 +278,8 @@ QDSDatepicker.propTypes = {
     isDisabled: PropTypes.bool,
     isRange: PropTypes.bool,
     isRequired: PropTypes.bool,
-    isSimple: PropTypes.bool,
     label: PropTypes.string.isRequired,
+    labelEndDate: PropTypes.string,
     offset: PropTypes.number,
     placeholder: PropTypes.string,
     showOnTop: PropTypes.bool,

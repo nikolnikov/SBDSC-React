@@ -10,12 +10,12 @@ const DatepickerInput = ({
     hintMessage,
     toggleCalendar,
     label,
+    labelEndDate,
     inputId,
     inputRef,
     isDisabled,
     isRange,
     isRequired,
-    isSimple,
     fromDate,
     placeholder,
     selectedDay,
@@ -41,11 +41,19 @@ const DatepickerInput = ({
                 }
             )}
         >
-            {label && (
-                <label className="ds-input__label" htmlFor="from">
-                    <span>{label}</span>
-                </label>
-            )}
+            {isRange
+                ? label && (
+                      <label className="ds-input__label --range" htmlFor="from">
+                          <span>{label}</span>
+
+                          {labelEndDate && <span>{labelEndDate}</span>}
+                      </label>
+                  )
+                : label && (
+                      <label className="ds-input__label" htmlFor="from">
+                          <span>{label}</span>
+                      </label>
+                  )}
             {isRange ? (
                 <div className="ds-input__range">
                     <input
@@ -81,17 +89,6 @@ const DatepickerInput = ({
                         ></span>
                     </button>
                 </div>
-            ) : isSimple ? (
-                <input
-                    aria-labelledby="Selected day"
-                    placeholder={placeholder}
-                    onChange={e => handleInputDateChange(e)}
-                    id={inputId}
-                    value={selectedDay}
-                    name="Selected day"
-                    onFocusCapture={handleInputFocus}
-                    type="date"
-                />
             ) : (
                 <div className="ds-flex --start-center --row">
                     <input
@@ -149,12 +146,12 @@ DatepickerInput.propTypes = {
     hintMessage: PropTypes.string,
     toggleCalendar: PropTypes.func,
     label: PropTypes.string,
+    labelEndDate: PropTypes.string,
     inputId: PropTypes.string,
     inputRef: PropTypes.object,
     isDisabled: PropTypes.bool,
     isRange: PropTypes.bool,
     isRequired: PropTypes.bool,
-    isSimple: PropTypes.bool,
     fromDate: PropTypes.string,
     placeholder: PropTypes.string,
     selectedDay: PropTypes.string,
