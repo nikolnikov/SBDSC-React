@@ -21,6 +21,17 @@ export const CITFooter = {
     },
     argTypes: {
         customClasses: { table: { disable: true } }
+    },
+    parameters: {
+        docs: {
+            source: {
+                language: 'html',
+                type: 'code',
+                code: `
+Please contact the Design System team for the Footer code snippet.
+                `.trim()
+            }
+        }
     }
 };
 
@@ -30,5 +41,16 @@ export const HIPAAFooter = {
     },
     argTypes: {
         ...CITFooter.argTypes
+    },
+    parameters: {
+        docs: {
+            source: {
+                language: 'html',
+                type: 'code',
+                code: `
+Please contact the Design System team for the Footer code snippet.
+                `.trim()
+            }
+        }
     }
 };
